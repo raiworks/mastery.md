@@ -1,3 +1,6 @@
 # Docs directory - project docs are managed separately
 docs/
 temp/
+
+# MCP Server - separate repo (https://github.com/RAiWorks/mastery-mcp-server)
+mastery-mcp-server/
