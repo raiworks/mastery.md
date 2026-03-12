@@ -12,8 +12,13 @@
 
 - [Philosophy](#-philosophy)
 - [AI Agent Protocol](#-ai-agent-protocol)
+  - [Context Loading Order](#context-loading-order)
+  - [Determining Current State](#determining-current-state)
+  - [Autonomy Boundaries](#autonomy-boundaries)
   - [Verification Cross-Checks](#verification-cross-checks)
   - [MCP-Enhanced Workflow](#mcp-enhanced-workflow)
+  - [Session Handoff Protocol](#session-handoff-protocol)
+  - [AI Communication Style](#ai-communication-style)
 - [Project Initialization](#-project-initialization)
 - [Document Ecosystem](#-document-ecosystem)
 - [The Workflow — Feature Lifecycle](#-the-workflow--feature-lifecycle)
@@ -296,6 +301,7 @@ docs/
 | **api.md** | Feature | Interface contracts (APIs, CLIs, protocols, events) | When feature has external interfaces |
 | **changelog.md** | Feature | Running log of changes during implementation | During build phase |
 | **review.md** | Feature | Post-implementation retrospective | After merge to main |
+| **lightweight.md** | Feature | Single combined doc for lightweight-eligible features | When feature meets ALL lightweight eligibility criteria |
 
 ### Which Docs Are Required vs Optional?
 
@@ -311,6 +317,7 @@ docs/
 | **api** | ⚡ Conditional | Feature has no external interfaces (HTTP, CLI, events, protocols) |
 | **changelog** | ✅ Always | Never skip — tracks what actually happened vs what was planned |
 | **review** | ✅ Always | Never skip — learning compounds over time |
+| **lightweight** | ⚡ Conditional | Feature does NOT meet all lightweight eligibility criteria |
 
 > **Lightweight features**: Features meeting ALL lightweight eligibility criteria use a single `lightweight.md` instead of individual docs. See [Lightweight Feature Variant](#-lightweight-feature-variant).
 
@@ -1709,7 +1716,7 @@ git push origin main
 
 ---
 
-## 📝 Commit Message Convention
+## ✍️ Commit Message Convention
 
 ### Format
 
@@ -1934,6 +1941,8 @@ A feature is considered DONE when ALL of the following are true:
 15. Create  docs/features/XX-feature-name/review.md       (reflect)
 16. Update  project-roadmap.md progress tracker           (track)
 ```
+
+> **Lightweight path**: If the feature meets ALL lightweight eligibility criteria, replace steps 3–15 with a single `lightweight.md`. See [Lightweight Feature Variant](#-lightweight-feature-variant).
 
 ### Document Quick Reference
 
