@@ -37,6 +37,7 @@
   - [Changelog Doc](#9-changelog-document)
   - [Review Doc](#10-review-document)
   - [Lightweight Feature Doc](#11-lightweight-feature-document)
+  - [AGENTS.md](#12-agentsmd-ai-agent-orientation)
 - [Git Branching Strategy](#-git-branching-strategy)
 - [Commit Message Convention](#-commit-message-convention)
 - [Parallel Features](#-parallel-features)
@@ -231,6 +232,12 @@ Once the discussion is marked COMPLETE, distill the decisions into `docs/project
 
 The project-context doc is a **formalized output** of the discussion — structured, clean, and reference-ready.
 
+### Step 3.5 — Generate AGENTS.md
+
+Create `AGENTS.md` at the **project root** (not inside `docs/`) using Template #12. This file is the AI agent entry point — every AI tool (Copilot, Cursor, Claude, etc.) looks for it when entering a project.
+
+**AGENTS.md is a derived artifact** — its content comes from `project-context.md` and `mastery.md` conventions. When `project-context.md` changes, update AGENTS.md to stay in sync.
+
 ### Step 4 — Build the Roadmap
 
 Based on the project context, create `docs/project-roadmap.md` using the template below:
@@ -262,6 +269,7 @@ Follow the Feature Lifecycle (below) starting with the Discussion stage.
 Every project using Mastery has this documentation structure:
 
 ```
+AGENTS.md                           # 🤖 AI agent orientation (at project root — derived from project-context.md)
 docs/
 ├── mastery.md                  # 🏛️ THIS — The universal process framework
 ├── project-discussion.md       # 💬 Project-level discussion — WHY and WHAT (created first)
@@ -290,6 +298,7 @@ docs/
 
 | Document | Scope | Purpose | When Created |
 |---|---|---|---|
+| **AGENTS.md** | Project | AI agent orientation — quick-start guide for any AI tool | After project-context.md is created (project init) |
 | **mastery.md** | Universal | Process framework — HOW you work | Once (project init) |
 | **project-discussion.md** | Project | Project-level conversation — WHY and WHAT | First (project init), before anything else |
 | **project-context.md** | Project | Project identity — WHAT you're building | After project discussion is COMPLETE |
@@ -307,6 +316,7 @@ docs/
 
 | Document | Required? | Skip When... |
 |---|---|---|
+| **AGENTS.md** | ✅ Always | Never skip — ensures any AI tool can orient itself in the project |
 | **project-discussion** | ✅ Always | Never skip — this is the project's foundation conversation |
 | **project-context** | ✅ Always | Never skip — this is the project's identity |
 | **project-roadmap** | ✅ Always | Never skip — this is the project's plan |
@@ -1651,6 +1661,71 @@ Use this template when a feature meets ALL lightweight eligibility criteria (see
 - **Went well**: ...
 - **Learned**: ...
 - **Follow-ups**: None | [list any]
+````
+
+### 12. AGENTS.md (AI Agent Orientation)
+
+Every Mastery project should have an `AGENTS.md` at the **project root**. This is the first file AI agent tools read when entering a project — it provides quick orientation so agents know what the project is, how it's structured, and where to find the full protocol.
+
+**When to create**: During Project Initialization, after `project-context.md` is created (Step 3.5).
+**Source of truth**: Derived from `project-context.md` + `mastery.md` conventions. Not independently authored.
+**When to update**: Whenever `project-context.md` changes (project structure, conventions, scope).
+**Location**: Project root (NOT inside `docs/`) — AI tools scan the root for this file.
+
+````markdown
+# AGENTS.md
+
+[One-paragraph project summary: what it is, what it does, what problem it solves.]
+
+## Project Structure
+
+```
+[Project tree — copy from project-context.md, annotate key files/folders]
+```
+
+## Getting Started (for AI Agents)
+
+Read docs in this exact order (matches the AI Agent Protocol in `docs/mastery.md`):
+
+1. `docs/mastery.md` — Understand the process and AI Agent Protocol
+2. `docs/project-discussion.md` — Understand WHY the project exists and key decisions
+3. `docs/project-context.md` — Understand WHAT the project is (formalized)
+4. `docs/project-roadmap.md` — Understand WHERE the project stands
+5. `docs/features/` (active) — Understand the current feature state
+
+To find current work:
+1. Check `docs/project-roadmap.md` for features marked 🟡 IN PROGRESS
+2. Open that feature's folder: `discussion → architecture → tasks → changelog`
+3. In `tasks.md`, find the last checked checkbox — that's where work stopped
+4. In `changelog.md`, read the latest Session Note for context
+
+## Key Rules
+
+- **Docs before code** — discuss, design, and plan before building. Never skip stages.
+- **Feature branches only** — all work happens on `feature/XX-name` branches, never on `main`.
+- **Never delete branches** — kept forever as historical reference.
+- **Human approval required** for: merging to main, modifying architecture after finalization, changing `project-context.md`, reordering the roadmap, adding dependencies.
+- **AI agents CAN** autonomously: read docs, write code within active tasks, check off tasks, log changelog entries, create commits, push to feature branches.
+
+See the full Autonomy Boundaries table in `docs/mastery.md` → AI Agent Protocol section.
+
+## Conventions
+
+**Branches**: `feature/XX-feature-name` from `main` (e.g., `feature/01-auth`)
+
+**Commits**: `type(scope): short description`
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `hotfix`
+- Scope: feature name or module (e.g., `auth`, `api`, `docs`)
+
+**File naming**: kebab-case for all files (e.g., `project-context.md`, `process-overrides.md`)
+
+**Markdown style**: ATX headings (`#`), fenced code blocks (triple backtick)
+
+## Full Protocol
+
+The complete AI Agent Protocol — including context loading order, autonomy boundaries, session handoff protocol, and communication style rules — is defined in:
+
+**`docs/mastery.md` → Section: 🤖 AI Agent Protocol**
 ````
 
 ---
