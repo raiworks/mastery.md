@@ -12,6 +12,8 @@
 
 - [Philosophy](#-philosophy)
 - [AI Agent Protocol](#-ai-agent-protocol)
+  - [Verification Cross-Checks](#verification-cross-checks)
+  - [MCP-Enhanced Workflow](#mcp-enhanced-workflow)
 - [Project Initialization](#-project-initialization)
 - [Document Ecosystem](#-document-ecosystem)
 - [The Workflow — Feature Lifecycle](#-the-workflow--feature-lifecycle)
@@ -114,6 +116,47 @@ AI agents MUST follow these rules about what they can and cannot do independentl
 | Reorder features in roadmap | ❌ No | ✅ Always human-approved |
 | Add new dependencies/packages | ❌ No | ✅ Always human-approved |
 | Edit mastery.md | ❌ No | ✅ Never — this file is read-only, no exceptions |
+| Perform verification cross-check | ✅ Yes | — |
+| Skip a required cross-check | ❌ No | ✅ Never — no exceptions |
+
+### Verification Cross-Checks
+
+AI agents MUST verify their work against planning docs — not just check that tests pass. A cross-check is a structured self-audit that catches drift between what was planned and what was built.
+
+#### When to Cross-Check
+
+| Trigger | What to Verify |
+|---|---|
+| After planning docs created | Discussion ↔ architecture ↔ tasks ↔ testplan alignment |
+| Every ~5 build tasks completed | Code matches architecture, tasks checked off, changelog current |
+| Before requesting merge | Full cross-check — all items below |
+
+#### What to Verify
+
+1. **Architecture ↔ Code** — Does the implementation match the architecture doc? Are deviations documented?
+2. **Tasks ↔ Code** — Are completed tasks reflected in code? Are checkboxes updated?
+3. **Testplan ↔ Tests** — Do testplan cases have corresponding tests? Are statuses filled in?
+4. **Changelog ↔ Session** — Does the changelog reflect what happened this session?
+5. **Dependencies ↔ Architecture** — Are only approved dependencies used?
+
+#### Handling Gaps
+
+- Fix gaps autonomously — update checkboxes, fill testplan statuses, log deviations
+- Log the cross-check in the changelog: "Cross-check performed: N gaps found, N fixed"
+- Escalate to human for architectural deviations or blocking issues
+
+### MCP-Enhanced Workflow
+
+If an MCP server is configured for a Mastery project, AI agents can use structured tool calls as an alternative to reading raw files. MCP is **optional** — the file-based workflow in Context Loading Order remains fully functional without it.
+
+| Task | Without MCP | With MCP |
+|---|---|---|
+| Load project context | Read markdown files in order | Call status/overview tools for structured data |
+| Find active feature | Parse roadmap for 🟡 markers | Call roadmap tool for parsed feature list |
+| Check task progress | Read task file, count checkboxes | Call task tool for structured status |
+| Search across docs | Grep through files | Call search tools with queries |
+
+**Guidance**: Prefer MCP tools for status overviews and navigation. Always verify against raw docs when making changes — the files are the source of truth, not the MCP responses.
 
 ### Session Handoff Protocol
 
