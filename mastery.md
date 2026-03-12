@@ -4,7 +4,7 @@
 > Every feature starts as a discussion, gets designed, becomes a plan, and ships as clean, tested code.
 > Works for any project. Any language. Any stack. Any team size. Human or AI-driven.
 >
-> ⚠️ **THIS FILE IS READ-ONLY.** Do not edit `mastery.md` in any project. It is the single-origin framework — consistent across all projects. Project-specific decisions belong in `project-context.md`. Feature-specific decisions belong in feature docs. If you need to customize the process, document overrides in `docs/references/process-overrides.md`, never modify this file.
+> ⚠️ **THIS FILE IS READ-ONLY** in every project that uses this framework. The copy at `docs/mastery.md` must never be edited — it stays identical across all projects. The only place this file is developed and improved is in its **origin repository**. Project-specific decisions belong in `project-context.md`. Feature-specific decisions belong in feature docs. If you need to customize the process, document overrides in `docs/references/process-overrides.md`.
 
 ---
 
@@ -50,7 +50,7 @@
 4. **Test before you ship.** Every feature has a test plan.
 5. **Document as you go.** Changes are logged, not remembered.
 6. **Review when you're done.** Reflect, learn, improve.
-7. **Never edit the framework.** `mastery.md` is read-only — it stays identical across every project to ensure a single, consistent process.
+7. **Never edit the framework in consuming projects.** The `docs/mastery.md` copy is read-only — it stays identical across every project. Improvements happen only in the framework's origin repository.
 
 ### Why This Framework Exists
 
@@ -115,7 +115,7 @@ AI agents MUST follow these rules about what they can and cannot do independentl
 | Change project-context.md | ❌ No | ✅ Always human-approved |
 | Reorder features in roadmap | ❌ No | ✅ Always human-approved |
 | Add new dependencies/packages | ❌ No | ✅ Always human-approved |
-| Edit mastery.md | ❌ No | ✅ Never — this file is read-only, no exceptions |
+| Edit docs/mastery.md | ❌ No | ✅ Never — the project copy is read-only, no exceptions |
 | Perform verification cross-check | ✅ Yes | — |
 | Skip a required cross-check | ❌ No | ✅ Never — no exceptions |
 
