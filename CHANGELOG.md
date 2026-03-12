@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.0.0] — 2026-03-12
+
+### Changed
+
+- **Restructured section order for progressive disclosure** — most critical information (Philosophy, AI Agent Protocol) at top, operational content (Workflow, Templates) in middle, reference material (Git, Definitions) at bottom
+- Moved Document Naming Convention before Document Templates (understand naming before reading templates)
+- Moved Git Branching Strategy and Commit Message Convention up, directly after Templates (operational — needed when doing work)
+- Moved Parallel Features down (edge case, not core flow)
+- Moved References Directory down (lookup material)
+- Updated Table of Contents to match new section order
+- Version bump in footer: v2.0 → v3.0
+
+### Unchanged
+
+- All 16 sections preserved — no content added or removed
+- All 10 document templates intact
+- AI Agent Protocol content unchanged
+- Total: 86 lines moved, 0 lines added or deleted
+
+---
+
 ## [2.0.0] — 2026-03-12
 
 ### About
