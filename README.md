@@ -22,6 +22,8 @@ AI coding agents are powerful but directionless without process. They'll start c
 
 Mastery solves this by giving every project the same structured process — documented in a single file that both humans and AI agents can read and follow.
 
+**Zero dependencies.** Pure Markdown. No tooling, no runtime, no packages — works with any language, any stack, any editor.
+
 ## Quick Start
 
 1. **Copy** `mastery.md` into your project's `docs/` directory
