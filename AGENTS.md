@@ -8,7 +8,7 @@ This repository contains **MASTERY.md** — a universal, tech-agnostic developme
 
 ```
 MASTERY.md/
-├── mastery.md          # THE PRODUCT — the framework file (read-only)
+├── mastery.md          # THE PRODUCT — the framework file (editable here, read-only in consuming projects)
 ├── AGENTS.md           # This file — AI agent orientation
 ├── README.md           # Human-oriented landing page
 ├── LICENSE             # MIT
@@ -47,7 +47,7 @@ To find current work:
 
 ## Key Rules
 
-- **`mastery.md` is READ-ONLY** — never edit it. It IS the product.
+- **`mastery.md` is the product** — this repo develops it. In consuming projects, the copy at `docs/mastery.md` is read-only.
 - **Docs before code** — discuss, design, and plan before building. Never skip stages.
 - **Feature branches only** — all work happens on `feature/XX-name` branches, never on `main`.
 - **Never delete branches** — kept forever as historical reference.
