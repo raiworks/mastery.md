@@ -18,6 +18,7 @@
 - [Document Ecosystem](#-document-ecosystem)
 - [The Workflow — Feature Lifecycle](#-the-workflow--feature-lifecycle)
 - [Hotfix Workflow](#-hotfix-workflow)
+- [Lightweight Feature Variant](#-lightweight-feature-variant)
 - [Document Naming Convention](#-document-naming-convention)
 - [Document Templates](#-document-templates)
   - [Project Discussion Doc](#1-project-discussion-document)
@@ -30,6 +31,7 @@
   - [API Spec Doc](#8-api-spec-document)
   - [Changelog Doc](#9-changelog-document)
   - [Review Doc](#10-review-document)
+  - [Lightweight Feature Doc](#11-lightweight-feature-document)
 - [Git Branching Strategy](#-git-branching-strategy)
 - [Commit Message Convention](#-commit-message-convention)
 - [Parallel Features](#-parallel-features)
@@ -310,6 +312,8 @@ docs/
 | **changelog** | ✅ Always | Never skip — tracks what actually happened vs what was planned |
 | **review** | ✅ Always | Never skip — learning compounds over time |
 
+> **Lightweight features**: Features meeting ALL lightweight eligibility criteria use a single `lightweight.md` instead of individual docs. See [Lightweight Feature Variant](#-lightweight-feature-variant).
+
 ---
 
 ## 🔄 The Workflow — Feature Lifecycle
@@ -484,6 +488,49 @@ Not everything can go through the full 6-stage lifecycle. Critical bugs in produ
 
 ---
 
+## 🪶 Lightweight Feature Variant
+
+Not every feature needs the full 6-doc lifecycle. For planned changes that are docs-only, config-only, or trivially simple, the Lightweight Feature Variant provides an abbreviated path using a **single combined document** instead of six separate ones.
+
+> **Key difference from Hotfix**: Hotfixes are for **unplanned urgent** fixes (production broken). Lightweight is for **planned trivial** work (simple, low-risk changes you can describe in a few sentences).
+
+### When to Use Lightweight
+
+A feature qualifies as lightweight when **ALL** of the following are true:
+
+1. **No new code logic** — docs-only, config-only, or trivial changes (typo fixes, renaming, reordering)
+2. **No architectural decisions** — no new files, no new data models, no new interfaces, no dependency changes
+3. **Well-understood scope** — the change can be fully described in a few sentences
+4. **Low risk** — failure would not break production, corrupt data, or compromise security
+5. **Self-contained** — the change does not affect other features in progress
+
+If **any** criterion is not met, use the full lifecycle. When in doubt, use the full lifecycle.
+
+### Lightweight Lifecycle
+
+```
+┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+│  CREATE  │─▶│   WORK   │─▶│  VERIFY  │─▶│   SHIP   │
+│ lightweight│  │  Execute │  │  Review  │  │  Merge   │
+│   .md    │  │  tasks   │  │  & test  │  │ & reflect│
+└──────────┘  └──────────┘  └──────────┘  └──────────┘
+```
+
+1. **Create** — Create `XX-feature-name/lightweight.md` using the template. Fill in Summary, Scope & Approach, Tasks, and Verification sections. Create feature branch.
+2. **Work** — Execute the tasks. Log progress in the Changelog section.
+3. **Verify** — Run the verification checks. Confirm everything works.
+4. **Ship** — Human-approved merge to `main`. Fill in the Reflection section after merge.
+
+### Lightweight Rules
+
+- Lightweight features **still use feature branches** (`feature/XX-name`) — no direct commits to main
+- Lightweight features **still require human approval** for merge — no autonomous merging
+- Feature branches are **never deleted** — same as full lifecycle
+- If scope grows beyond eligibility, **upgrade to full lifecycle**: the lightweight doc becomes your `discussion.md`, then create the remaining docs as needed
+- The lightweight doc stays in the feature folder even after upgrade — it's historical record
+
+---
+
 ## 📛 Document Naming Convention
 
 ### Feature Folders
@@ -507,6 +554,8 @@ docs/features/
 │   ├── api.md
 │   ├── changelog.md
 │   └── review.md
+├── 03-update-readme/
+│   └── lightweight.md          # Lightweight variant — single combined doc
 └── ...
 ```
 
@@ -1539,6 +1588,62 @@ For other types, replace with appropriate contract definitions:
 
 - [ ] [Follow-up item]
 - [ ] [Follow-up item]
+````
+
+### 11. Lightweight Feature Document
+
+Use this template when a feature meets ALL lightweight eligibility criteria (see [Lightweight Feature Variant](#-lightweight-feature-variant)). This single document replaces the six standard feature docs.
+
+````markdown
+# Feature #XX — [Feature Name] (Lightweight)
+
+**Status**: 💬 IN PROGRESS | 🟢 COMPLETE
+**Type**: Docs-only | Config-only | Trivial change
+**Date**: YYYY-MM-DD
+**Branch**: `feature/XX-feature-name`
+
+---
+
+## Summary
+
+<!-- WHAT is changing and WHY — 2-3 sentences max -->
+
+## Scope & Approach
+
+<!-- WHAT files change, HOW — keep brief. No multi-paragraph design docs. -->
+
+| File | Change |
+|---|---|
+| `path/to/file` | Description of change |
+
+## Tasks
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] ...
+
+### Verification
+
+<!-- HOW you'll confirm the change works — manual check, visual inspection, test run, etc. -->
+
+- [ ] Verification step 1
+- [ ] Verification step 2
+
+## Changelog
+
+<!-- Log entries as work progresses -->
+
+| Date | Entry |
+|---|---|
+| YYYY-MM-DD | Description of what was done |
+
+## Reflection
+
+<!-- Fill after merge — brief: what went well, anything learned -->
+
+- **Went well**: ...
+- **Learned**: ...
+- **Follow-ups**: None | [list any]
 ````
 
 ---
