@@ -16,7 +16,6 @@
 - [Document Ecosystem](#-document-ecosystem)
 - [The Workflow — Feature Lifecycle](#-the-workflow--feature-lifecycle)
 - [Hotfix Workflow](#-hotfix-workflow)
-- [Parallel Features](#-parallel-features)
 - [Document Naming Convention](#-document-naming-convention)
 - [Document Templates](#-document-templates)
   - [Project Discussion Doc](#1-project-discussion-document)
@@ -29,9 +28,10 @@
   - [API Spec Doc](#8-api-spec-document)
   - [Changelog Doc](#9-changelog-document)
   - [Review Doc](#10-review-document)
-- [References Directory](#-references-directory)
 - [Git Branching Strategy](#-git-branching-strategy)
 - [Commit Message Convention](#-commit-message-convention)
+- [Parallel Features](#-parallel-features)
+- [References Directory](#-references-directory)
 - [Resuming Work](#-resuming-work)
 - [Definition of Done](#-definition-of-done)
 - [Quick Reference](#-quick-reference)
@@ -438,45 +438,6 @@ Not everything can go through the full 6-stage lifecycle. Critical bugs in produ
 - Hotfixes MUST be documented after the fact
 - If the fix is complex or touches multiple systems, it's NOT a hotfix — use the full lifecycle
 - After the hotfix is merged, consider whether a follow-up feature is needed to address the root cause
-
----
-
-## 🔀 Parallel Features
-
-The default recommendation is **one feature at a time** — finish and merge before starting the next. This keeps things simple and avoids merge conflicts.
-
-However, real projects sometimes need parallel work. Here's how to handle it safely.
-
-### When Parallel Work Is Safe
-
-- Features touch completely different files and modules
-- Features have no shared dependencies
-- Both features branch from the same `main` commit
-- Team members (human or AI) are assigned to separate features
-
-### When Parallel Work Is Risky
-
-- Features modify the same files
-- One feature depends on another that isn't merged yet
-- Shared data models or schemas are being changed by both
-
-### Parallel Feature Rules
-
-1. **Always branch from latest `main`** — both features start from the same baseline
-2. **Communicate actively** — if you discover overlap, stop and coordinate
-3. **Merge the simpler/smaller feature first** — reduces conflict surface
-4. **Rebase the second feature after first merge** — `git rebase main` on the remaining branch
-5. **Re-run tests after rebase** — conflicts may introduce subtle bugs
-6. **Document in changelog** — note that parallel work occurred and how conflicts were resolved
-
-### Conflict Resolution Protocol
-
-If merge conflicts arise:
-
-1. The feature being merged second is responsible for resolving conflicts
-2. After resolution, re-run the FULL test plan for that feature
-3. Log the conflict and resolution in the changelog
-4. If the conflict changes architecture, update the architecture doc
 
 ---
 
@@ -1539,50 +1500,6 @@ For other types, replace with appropriate contract definitions:
 
 ---
 
-## 📚 References Directory
-
-The `docs/references/` directory holds standalone documents that don't belong to a specific feature but are important for the project.
-
-### What Goes Here
-
-| Document Type | Naming Convention | Purpose |
-|---|---|---|
-| **Architecture Decision Records** | `ADR-NNN-title.md` | Record significant architectural decisions with context and rationale |
-| **Style Guide** | `style-guide.md` | Coding conventions, formatting rules, naming patterns |
-| **Glossary** | `glossary.md` | Domain-specific terms and their definitions |
-| **Hotfix Log** | `hotfix-log.md` | Record of all hotfixes applied outside the normal feature lifecycle |
-| **External Specs** | `spec-name.md` | Third-party API docs, protocol specs, or standards being followed |
-| **Onboarding Guide** | `onboarding.md` | How to get started as a new contributor (human or AI) |
-| **Runbooks** | `runbook-topic.md` | Operational procedures (deployment, rollback, incident response) |
-| **Process Overrides** | `process-overrides.md` | Team-specific adjustments to the Mastery framework (never edit mastery.md directly) |
-
-### ADR Format (Quick Reference)
-
-```markdown
-# ADR-NNN: [Title]
-
-**Date**: YYYY-MM-DD
-**Status**: Proposed | Accepted | Deprecated | Superseded by ADR-NNN
-
-## Context
-[What is the issue or decision that needs to be made?]
-
-## Decision
-[What was decided?]
-
-## Consequences
-[What are the positive and negative outcomes of this decision?]
-```
-
-### Rules
-
-- Reference docs are NOT tied to feature numbers
-- They can be created at any time, not just during a feature lifecycle
-- They should be linked from relevant feature docs when applicable
-- Keep them up to date — stale reference docs are worse than no docs
-
----
-
 ## 🌿 Git Branching Strategy
 
 ```
@@ -1684,6 +1601,89 @@ test(contact): add form submission edge case tests
 chore(deps): update framework to latest version
 hotfix(payments): fix decimal rounding in invoice calculation
 ```
+
+---
+
+## 🔀 Parallel Features
+
+The default recommendation is **one feature at a time** — finish and merge before starting the next. This keeps things simple and avoids merge conflicts.
+
+However, real projects sometimes need parallel work. Here's how to handle it safely.
+
+### When Parallel Work Is Safe
+
+- Features touch completely different files and modules
+- Features have no shared dependencies
+- Both features branch from the same `main` commit
+- Team members (human or AI) are assigned to separate features
+
+### When Parallel Work Is Risky
+
+- Features modify the same files
+- One feature depends on another that isn't merged yet
+- Shared data models or schemas are being changed by both
+
+### Parallel Feature Rules
+
+1. **Always branch from latest `main`** — both features start from the same baseline
+2. **Communicate actively** — if you discover overlap, stop and coordinate
+3. **Merge the simpler/smaller feature first** — reduces conflict surface
+4. **Rebase the second feature after first merge** — `git rebase main` on the remaining branch
+5. **Re-run tests after rebase** — conflicts may introduce subtle bugs
+6. **Document in changelog** — note that parallel work occurred and how conflicts were resolved
+
+### Conflict Resolution Protocol
+
+If merge conflicts arise:
+
+1. The feature being merged second is responsible for resolving conflicts
+2. After resolution, re-run the FULL test plan for that feature
+3. Log the conflict and resolution in the changelog
+4. If the conflict changes architecture, update the architecture doc
+
+---
+
+## 📚 References Directory
+
+The `docs/references/` directory holds standalone documents that don't belong to a specific feature but are important for the project.
+
+### What Goes Here
+
+| Document Type | Naming Convention | Purpose |
+|---|---|---|
+| **Architecture Decision Records** | `ADR-NNN-title.md` | Record significant architectural decisions with context and rationale |
+| **Style Guide** | `style-guide.md` | Coding conventions, formatting rules, naming patterns |
+| **Glossary** | `glossary.md` | Domain-specific terms and their definitions |
+| **Hotfix Log** | `hotfix-log.md` | Record of all hotfixes applied outside the normal feature lifecycle |
+| **External Specs** | `spec-name.md` | Third-party API docs, protocol specs, or standards being followed |
+| **Onboarding Guide** | `onboarding.md` | How to get started as a new contributor (human or AI) |
+| **Runbooks** | `runbook-topic.md` | Operational procedures (deployment, rollback, incident response) |
+| **Process Overrides** | `process-overrides.md` | Team-specific adjustments to the Mastery framework (never edit mastery.md directly) |
+
+### ADR Format (Quick Reference)
+
+```markdown
+# ADR-NNN: [Title]
+
+**Date**: YYYY-MM-DD
+**Status**: Proposed | Accepted | Deprecated | Superseded by ADR-NNN
+
+## Context
+[What is the issue or decision that needs to be made?]
+
+## Decision
+[What was decided?]
+
+## Consequences
+[What are the positive and negative outcomes of this decision?]
+```
+
+### Rules
+
+- Reference docs are NOT tied to feature numbers
+- They can be created at any time, not just during a feature lifecycle
+- They should be linked from relevant feature docs when applicable
+- Keep them up to date — stale reference docs are worse than no docs
 
 ---
 
@@ -1825,5 +1825,5 @@ A feature is considered DONE when ALL of the following are true:
 
 ---
 
-*Mastery Framework v2.0*
+*Mastery Framework v3.0*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*
