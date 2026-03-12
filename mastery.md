@@ -38,6 +38,8 @@
   - [Review Doc](#10-review-document)
   - [Lightweight Feature Doc](#11-lightweight-feature-document)
   - [AGENTS.md](#12-agentsmd-ai-agent-orientation)
+  - [SKILL.md](#13-skillmd-ai-agent-skill)
+  - [llms.txt](#14-llmstxt-machine-readable-summary)
 - [Git Branching Strategy](#-git-branching-strategy)
 - [Commit Message Convention](#-commit-message-convention)
 - [Parallel Features](#-parallel-features)
@@ -270,6 +272,8 @@ Every project using Mastery has this documentation structure:
 
 ```
 AGENTS.md                           # 🤖 AI agent orientation (at project root — derived from project-context.md)
+SKILL.md                            # ⚡ AI agent skill (at project root — optional, when project has domain expertise)
+llms.txt                            # ⚡ Machine-readable project summary (at project root — optional, for discoverability)
 docs/
 ├── mastery.md                  # 🏛️ THIS — The universal process framework
 ├── project-discussion.md       # 💬 Project-level discussion — WHY and WHAT (created first)
@@ -299,6 +303,8 @@ docs/
 | Document | Scope | Purpose | When Created |
 |---|---|---|---|
 | **AGENTS.md** | Project | AI agent orientation — quick-start guide for any AI tool | After project-context.md is created (project init) |
+| **SKILL.md** | Project | AI agent skill — domain knowledge packaging for AI tools | When project has domain expertise worth packaging |
+| **llms.txt** | Project | Machine-readable summary — LLM-parseable project overview | When project is publicly discoverable |
 | **mastery.md** | Universal | Process framework — HOW you work | Once (project init) |
 | **project-discussion.md** | Project | Project-level conversation — WHY and WHAT | First (project init), before anything else |
 | **project-context.md** | Project | Project identity — WHAT you're building | After project discussion is COMPLETE |
@@ -317,6 +323,8 @@ docs/
 | Document | Required? | Skip When... |
 |---|---|---|
 | **AGENTS.md** | ✅ Always | Never skip — ensures any AI tool can orient itself in the project |
+| **SKILL.md** | ⚡ Conditional | Project has no domain expertise worth packaging as an agent skill |
+| **llms.txt** | ⚡ Conditional | Project is not publicly discoverable or doesn't need machine-readable summary |
 | **project-discussion** | ✅ Always | Never skip — this is the project's foundation conversation |
 | **project-context** | ✅ Always | Never skip — this is the project's identity |
 | **project-roadmap** | ✅ Always | Never skip — this is the project's plan |
@@ -1727,6 +1735,74 @@ The complete AI Agent Protocol — including context loading order, autonomy bou
 
 **`docs/mastery.md` → Section: 🤖 AI Agent Protocol**
 ````
+
+### 13. SKILL.md (AI Agent Skill)
+
+SKILL.md packages a project's domain knowledge as a discoverable skill for AI agent tools. While AGENTS.md tells agents *how to work* in a project, SKILL.md tells agents *what expertise this project offers* — domain patterns, specialized workflows, or conventions that agents can invoke.
+
+**When to create**: When the project has domain-specific knowledge worth packaging (specialized workflows, domain rules, coding patterns).
+**Location**: Project root (alongside AGENTS.md) — AI tools scan the root for skill files.
+**Format**: Markdown with YAML frontmatter for tool discovery.
+
+````markdown
+---
+name: [skill-name]
+description: [One-sentence description of what this skill teaches AI agents]
+applyTo: [glob pattern for files this skill applies to, e.g. "**/*.md" or "**"]
+---
+
+# [Skill Name]
+
+[2-3 sentence description of the domain knowledge this skill provides. What does it teach? What patterns does it encode?]
+
+## When to Use
+
+- [Scenario 1 where this skill applies]
+- [Scenario 2 where this skill applies]
+- [Scenario 3 where this skill applies]
+
+## When NOT to Use
+
+- [Scenario where this skill does NOT apply]
+- [Scenario where a different approach is better]
+
+## Key Patterns
+
+[Document the domain-specific patterns, conventions, or workflows that define this skill. Be specific and actionable — agents will use this as a reference.]
+
+## References
+
+- [Link to detailed docs, specs, or examples within the project]
+````
+
+### 14. llms.txt (Machine-Readable Summary)
+
+llms.txt provides a concise, machine-readable summary of the project for LLMs encountering it via web, API, or file system. It follows the [llms.txt convention](https://llmstxt.org/) — a structured text file that gives LLMs instant context about what a project is and where to find key resources.
+
+**When to create**: When the project is publicly accessible and benefits from machine discoverability (open source projects, public APIs, documentation sites).
+**Location**: Project root (or served at `/.well-known/llms.txt` for web projects).
+**Format**: Markdown-compatible plain text with structured sections.
+
+````markdown
+# [Project Name]
+
+> [One-sentence project description]
+
+[2-3 sentence expanded summary. What does the project do? Who is it for? What problem does it solve?]
+
+## Docs
+
+- [Document Name](path/to/doc.md): [Brief description]
+- [Document Name](path/to/doc.md): [Brief description]
+- [Document Name](path/to/doc.md): [Brief description]
+
+## Optional
+
+- [Additional Resource](path/or/url): [Brief description]
+- [Additional Resource](path/or/url): [Brief description]
+````
+
+> **Tip**: Keep llms.txt concise — under 50 lines. For projects with extensive documentation, link to a `llms-full.txt` with expanded content.
 
 ---
 
