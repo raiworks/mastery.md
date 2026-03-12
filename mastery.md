@@ -44,6 +44,7 @@
 - [Commit Message Convention](#-commit-message-convention)
 - [Parallel Features](#-parallel-features)
 - [References Directory](#-references-directory)
+- [Cross-Tool Configuration](#-cross-tool-configuration)
 - [Resuming Work](#-resuming-work)
 - [Definition of Done](#-definition-of-done)
 - [Quick Reference](#-quick-reference)
@@ -1993,7 +1994,35 @@ The `docs/references/` directory holds standalone documents that don't belong to
 
 ---
 
-## 🔁 Resuming Work
+## � Cross-Tool Configuration
+
+Many AI coding tools look for their own configuration files. Rather than maintaining these independently, derive them from your existing Mastery docs — making Mastery the single source of truth for how agents work in your project.
+
+### Source Mapping
+
+| Tool | Config File | Derive From | Key Content to Include |
+|---|---|---|---|
+| **Cursor** | `.cursorrules` | project-context.md, AGENTS.md | Tech stack, conventions, project rules, coding patterns |
+| **Claude Code** | `CLAUDE.md` | AGENTS.md, project-context.md | Project overview, structure, key rules, build/test commands |
+| **Windsurf** | `.windsurfrules` | project-context.md, AGENTS.md | Tech stack, conventions, project rules |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | project-context.md, process-overrides.md | Coding conventions, project constraints, style rules |
+| **Kiro** | `.kiro/steering.md` | project-context.md, AGENTS.md | Project structure, tech stack, development workflow |
+
+### Derivation Principles
+
+1. **Single source of truth** — Mastery docs are the source. Tool configs are derived artifacts, not independently authored.
+2. **Regenerate, don’t edit** — When project-context.md or AGENTS.md changes, regenerate tool configs rather than editing them directly.
+3. **Include only what the tool needs** — Each tool has different strengths. Cursor needs coding rules; Claude needs project overview; Copilot needs style guidance. Don’t dump everything into every config.
+4. **Keep configs in version control** — Commit generated configs alongside the source docs so team members get them automatically.
+5. **Document the derivation** — Add a comment at the top of each generated config noting it was derived from Mastery docs and when.
+
+### MCP Alternative
+
+Projects with a Mastery MCP server can expose project context programmatically — AI tools that support MCP can query project state directly instead of reading static config files. See [MCP-Enhanced Workflow](#mcp-enhanced-workflow) for details.
+
+---
+
+## �🔁 Resuming Work
 
 Whether you're a human returning after a break or an AI agent starting a new session, follow this protocol to pick up where things left off.
 
