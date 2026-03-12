@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.0.1] — 2026-03-13
+
+### Added
+
+- **Mid-project adoption guide** — new section with 8-step workflow for adopting Mastery into existing projects (#11)
+- **Template #15 (Summary Document)** — retroactive feature summary for cataloging past work during mid-project adoption
+- **`_archive/` folder** convention for preserving pre-Mastery documentation
+- **Mid-Project Adoption checklist** in Quick Reference section
+- Updated Document Ecosystem: directory tree, Document Roles table, Required vs Optional table
+
+---
+
 ## [3.0.0] — 2026-03-12
 
 ### Changed
