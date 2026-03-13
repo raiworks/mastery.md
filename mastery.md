@@ -42,6 +42,7 @@
   - [SKILL.md](#13-skillmd-ai-agent-skill)
   - [llms.txt](#14-llmstxt-machine-readable-summary)
   - [Summary Doc](#15-summary-document-retroactive-feature)
+  - [Project Changelog Doc](#16-project-changelog-document)
 - [Git Branching Strategy](#-git-branching-strategy)
 - [Commit Message Convention](#-commit-message-convention)
 - [Parallel Features](#-parallel-features)
@@ -97,6 +98,8 @@ When an AI agent starts a session on this project, it MUST read documents in thi
 
 **Rule**: Never write code until you have read at minimum `project-context.md` and `project-roadmap.md`. Read `project-discussion.md` when you need deeper context on WHY decisions were made.
 
+> ⚠️ **Every new context**: AI agents MUST re-read `docs/mastery.md` at the start of every new context window or session — not just the first one. The framework rules, autonomy boundaries, and verification requirements must be fresh in context before any work begins.
+
 ### Determining Current State
 
 To figure out what's in progress:
@@ -119,6 +122,7 @@ AI agents MUST follow these rules about what they can and cannot do independentl
 | Log entries in changelog | ✅ Yes | — |
 | Create commits on feature branch | ✅ Yes | — |
 | Push to feature branch | ✅ Yes | — |
+| Update project changelog | ✅ Yes | — |
 | Create a new feature's discussion doc | ✅ Yes | — |
 | Modify architecture after finalization | ❌ No | ✅ Must discuss first |
 | Skip any lifecycle stage | ❌ No | ✅ Never — no exceptions |
@@ -250,6 +254,10 @@ Based on the project context, create `docs/project-roadmap.md` using the templat
 - Order them by dependency (what must exist before what)
 - Assign sequence numbers (01, 02, 03...)
 - Mark initial status (all 🔴 NOT STARTED)
+
+### Step 4.5 — Create the Project Changelog
+
+Create `docs/project-changelog.md` using Template #16. Start with an empty `[Unreleased]` section — it will be populated as features ship.
 
 ### Step 5 — Start Feature 01
 
@@ -383,6 +391,7 @@ docs/
 ├── project-discussion.md       # 💬 Project-level discussion — WHY and WHAT (created first)
 ├── project-context.md          # 🎯 Project identity, stack, architecture, scope (from discussion)
 ├── project-roadmap.md          # 🗺️ Feature list, priorities, dependencies, progress (from discussion)
+├── project-changelog.md        # 📝 Project history — high-level log of shipped features and changes
 │
 ├── _archive/                   # 📁 Pre-Mastery docs (mid-project adoption only)
 │   └── ...                        # Historical docs preserved as reference
@@ -416,6 +425,7 @@ docs/
 | **project-discussion.md** | Project | Project-level conversation — WHY and WHAT | First (project init), before anything else |
 | **project-context.md** | Project | Project identity — WHAT you're building | After project discussion is COMPLETE |
 | **project-roadmap.md** | Project | Feature plan — WHEN you build it | After project discussion is COMPLETE, updated continuously |
+| **project-changelog.md** | Project | Project history — high-level log of shipped features and changes | After first feature ships, updated every merge and hotfix |
 | **discussion.md** | Feature | Requirements & design conversation | Start of every feature |
 | **architecture.md** | Feature | Technical design & file structure | After discussion, before coding |
 | **tasks.md** | Feature | Phased implementation checklist | After architecture is designed |
@@ -436,6 +446,7 @@ docs/
 | **project-discussion** | ✅ Always | Never skip — this is the project's foundation conversation |
 | **project-context** | ✅ Always | Never skip — this is the project's identity |
 | **project-roadmap** | ✅ Always | Never skip — this is the project's plan |
+| **project-changelog** | ✅ Always | Never skip — this is the project's shipped history |
 | **discussion** | ✅ Always | Never skip — this is the foundation |
 | **architecture** | ✅ Always | Never skip — even simple features need structure planning |
 | **tasks** | ✅ Always | Never skip — this is your execution plan |
@@ -568,6 +579,7 @@ Phases in the tasks doc should be organized logically for your project type. The
 | Final test pass | Full test plan one last time |
 | Human approval | AI agents MUST get human sign-off before merge |
 | Merge to main | PR or direct merge (human executes or approves) |
+| Update project changelog | Add entry to `project-changelog.md` for the shipped feature |
 | Push main | Deploy pipeline triggers (if configured) |
 | Keep the feature branch | Never delete — historical reference |
 
@@ -610,7 +622,7 @@ Not everything can go through the full 6-stage lifecycle. Critical bugs in produ
 3. **Fix** — Make the minimal change needed. No refactoring. No "while I'm here" changes.
 4. **Verify** — Test the fix. Confirm the bug is resolved. Confirm nothing else broke.
 5. **Merge** — Human-approved merge to `main`. Push immediately.
-6. **Document** — Add a hotfix entry to the changelog of the most relevant feature, or create a standalone entry in `references/hotfix-log.md`
+6. **Document** — Add a hotfix entry to the changelog of the most relevant feature, or create a standalone entry in `references/hotfix-log.md`. Update `project-changelog.md` with the fix.
 
 ### Hotfix Rules
 
@@ -1960,6 +1972,54 @@ The summary document captures completed work retroactively during mid-project ad
 
 ---
 
+### 16. Project Changelog Document
+
+**Filename**: `project-changelog.md`
+**Location**: `docs/project-changelog.md`
+**Purpose**: High-level record of all shipped features, hotfixes, and significant changes — the project's history at a glance. Unlike per-feature changelogs (which track implementation details), this captures WHAT shipped and WHEN.
+**Created**: After the first feature ships. Updated every time a feature is merged or a hotfix is applied.
+
+````markdown
+# 📋 Project Changelog
+
+> **Project**: [Project Name]
+> **Format**: Based on [Keep a Changelog](https://keepachangelog.com/)
+> **Last Updated**: YYYY-MM-DD
+
+---
+
+## [Unreleased]
+
+<!-- Features merged to main but not yet released/deployed -->
+
+### Added
+### Changed
+### Fixed
+### Removed
+
+---
+
+<!-- Copy this block for each version or release -->
+
+## [X.Y.Z] — YYYY-MM-DD
+
+### Added
+- **Feature #XX — Feature Name** — Brief description of what was added
+
+### Changed
+- **Feature #XX — Feature Name** — Brief description of what changed
+
+### Fixed
+- **Hotfix — Description** — What was fixed and why
+
+### Removed
+- **Feature #XX — Feature Name** — What was removed and why
+````
+
+> **Granularity**: One entry per feature merge or hotfix — not per-commit. Group entries by version when your project uses versioned releases. If your project deploys continuously, group by date or milestone instead.
+
+---
+
 ## 🌿 Git Branching Strategy
 
 ```
@@ -2181,13 +2241,14 @@ Whether you're a human returning after a break or an AI agent starting a new ses
 
 ### For AI Agents
 
-1. Read `docs/project-context.md` — refresh on what this project is
-2. Read `docs/project-roadmap.md` — find the feature marked 🟡 IN PROGRESS
-3. Open that feature's `changelog.md` — read the latest Session Note
-4. Open that feature's `tasks.md` — find the last checked checkbox
-5. Read the architecture doc if you need to understand the design
-6. Continue from the exact task where work stopped
-7. When you start working, add a new Session Note to the changelog
+1. Read `docs/mastery.md` — reload the process framework (mandatory every session)
+2. Read `docs/project-context.md` — refresh on what this project is
+3. Read `docs/project-roadmap.md` — find the feature marked 🟡 IN PROGRESS
+4. Open that feature's `changelog.md` — read the latest Session Note
+5. Open that feature's `tasks.md` — find the last checked checkbox
+6. Read the architecture doc if you need to understand the design
+7. Continue from the exact task where work stopped
+8. When you start working, add a new Session Note to the changelog
 
 ### For Humans
 
@@ -2236,6 +2297,7 @@ A feature is considered DONE when ALL of the following are true:
 - [ ] All feature docs are complete and accurate
 - [ ] Changelog reflects what actually happened (not just what was planned)
 - [ ] Any deviations from architecture are documented with rationale
+- [ ] Project changelog is updated with shipped feature entry
 
 ---
 
@@ -2308,11 +2370,12 @@ A feature is considered DONE when ALL of the following are true:
 | Reflect on delivery | `docs/features/XX-feature-name/review.md` |
 | Record a big decision | `docs/references/ADR-NNN-title.md` |
 | Log a hotfix | `docs/references/hotfix-log.md` |
+| See project history | `docs/project-changelog.md` |
 
 ### AI Agent Quick Start
 
 ```
-1. Read mastery.md (this file)
+1. Read mastery.md (this file — mandatory every session)
 2. Read project-discussion.md (if you need WHY context)
 3. Read project-context.md
 4. Read project-roadmap.md
@@ -2329,5 +2392,5 @@ A feature is considered DONE when ALL of the following are true:
 
 ---
 
-*Mastery Framework v3.0*
+*Mastery Framework v3.1*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*

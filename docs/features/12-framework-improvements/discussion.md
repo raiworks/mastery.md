@@ -1,6 +1,6 @@
 # Feature 12 — Framework Improvements (v3.1.0)
 
-## Status: 🟡 IN PROGRESS
+## Status: � COMPLETE
 
 ## Overview
 
@@ -154,13 +154,24 @@ Potential areas to explore:
 
 | # | Decision | Rationale |
 |---|---|---|
-| 1 | *Pending discussion* | |
-| 2 | *Pending discussion* | |
+| 1 | Make mastery.md loading mandatory on every new context | Agents lose process rules after first session; the Resuming Work section currently skips mastery.md entirely |
+| 2 | Unify the Resuming Work sequence with Context Loading Order — prepend mastery.md as step 1 | One consistent path is simpler than two divergent sequences |
+| 3 | Keep it strict "MUST read" — no "scan for familiarity" hedge | The framework is ~2000 lines but agents benefit from having it fully in context; weakening the language invites shortcuts |
+| 4 | Add project-changelog.md as a required document | Every project benefits from a single high-level history; scattered feature changelogs don't give the big picture |
+| 5 | AI agents autonomously update project changelog during Ship stage | This is a natural extension of what agents already do (update feature changelogs, check off tasks) |
+| 6 | One entry per feature merge, grouped by version when applicable | Right granularity — not per-commit (too detailed) and not per-sprint (too vague) |
+| 7 | Version bump to v3.1.0 | Item 2 adds a new required document type + template — that's a minor version bump, not a patch |
+| 8 | No separate project architecture doc | Tech stack and architecture overview already live in project-context.md; feature details go in per-feature architecture.md |
 
 ## Open Questions
 
-- [ ] Should mastery.md loading be "MUST read in full" or "MUST load into context (scan for familiarity)"?
-- [ ] Should the Resuming Work sequence be unified with the Context Loading Order (one path, not two)?
-- [ ] Should project-changelog.md be required for all projects or recommended?
-- [ ] Should AI agents autonomously update the project changelog during Ship stage?
-- [ ] Any additional improvements to add to this feature?
+*All resolved — discussion complete.*
+
+## Discussion Complete ✅
+
+**Summary**: Two improvements to the mastery.md framework: (1) enforce mandatory mastery.md loading on every new AI agent context/session, not just the first one, and (2) add a project-level changelog document to the ecosystem with template, lifecycle integration, and autonomy rules. Version bump to v3.1.0.
+**Completed**: 2026-03-13
+**Next Steps**:
+1. Create tasks for all mastery.md edits
+2. Build the changes
+3. Update CHANGELOG.md and roadmap

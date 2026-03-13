@@ -7,3 +7,6 @@ mastery-mcp-server/
 
 # Website - separate repo (https://github.com/RAiWorks/mastery-md-website)
 mastery-md-website/
+
+# Private data - not to be committed
+private-data/

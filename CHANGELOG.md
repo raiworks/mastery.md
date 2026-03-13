@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.1.0] — 2026-03-13
+
+### Added
+
+- **Strict context loading enforcement** — AI agents now MUST re-read `mastery.md` at the start of every new context/session, not just the first one. Added callout box in Context Loading Order section and prepended mastery.md to the Resuming Work → For AI Agents sequence. (#12)
+- **Project-level changelog** (`project-changelog.md`) — new required document for tracking shipped features and hotfixes at the project level. Added to Document Ecosystem, Document Roles, Required vs Optional tables. (#12)
+- **Template #16 — Project Changelog Document** — Keep a Changelog format for project-wide history
+- **Ship stage update** — "Update project-changelog.md" added as a step after merging to main
+- **Hotfix workflow update** — project changelog update added to the Document step
+- **Autonomy boundary** — AI agents can autonomously update the project changelog
+- **Definition of Done update** — project changelog entry added to Documentation Level checklist
+- **Project Initialization update** — Step 4.5 added for creating project-changelog.md
+
+### Changed
+
+- **Resuming Work → For AI Agents** — now starts with mastery.md as step 1 (was previously skipped)
+- **AI Agent Quick Start** — reinforced "mandatory every session" for mastery.md
+- Version footer: v3.0 → v3.1
+
+---
+
 ## [3.0.1] — 2026-03-13
 
 ### Added
