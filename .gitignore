@@ -4,3 +4,6 @@ temp/
 
 # MCP Server - separate repo (https://github.com/RAiWorks/mastery-mcp-server)
 mastery-mcp-server/
+
+# Website - separate repo (https://github.com/RAiWorks/mastery-md-website)
+mastery-md-website/
