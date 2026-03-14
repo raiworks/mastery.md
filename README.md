@@ -1,6 +1,6 @@
 # MASTERY.md
 
-**Current**: v3.0.0 · [Changelog](CHANGELOG.md)
+**Current**: v3.1.0 · [Changelog](CHANGELOG.md) · [Website](https://masterymd.com)
 
 > A universal, tech-agnostic development process framework — one Markdown file that defines how software projects should be structured, discussed, designed, planned, built, shipped, and reflected upon.
 
@@ -73,6 +73,20 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 ## License
 
 [MIT](LICENSE) — use freely in any project, commercial or open source.
+
+## Mastery MCP Server
+
+An optional companion tool that gives AI agents native access to Mastery docs through the [Model Context Protocol](https://modelcontextprotocol.io/).
+
+**14 tools** for reading project context, roadmaps, features, tasks, test plans, reviews, and more.
+**10 resources** for direct document access via `mastery://` URIs.
+
+The server watches your `docs/` folder and serves structured, parsed content — so AI agents can query your project state without reading raw files.
+
+- **Repository**: [github.com/raiworks/mastery-mcp-server](https://github.com/raiworks/mastery-mcp-server)
+- **Details**: [masterymd.com/mcp-server](https://masterymd.com/mcp-server)
+
+Works with VS Code (GitHub Copilot), Claude Desktop, Cursor, and any MCP-compatible client.
 
 ## Contributing
 
