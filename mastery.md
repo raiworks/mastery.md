@@ -89,7 +89,7 @@ This section defines how AI agents (copilots, coding assistants, autonomous agen
 When an AI agent starts a session on this project, it MUST read documents in this exact order:
 
 ```
-1. docs/mastery.md              → Understand the process (this file)
+1. docs/mastery-compact.md      → Framework rules (compact — all rules, no templates)
 2. docs/project-discussion.md   → Understand WHY the project exists and key decisions
 3. docs/project-context.md      → Understand WHAT the project is (formalized)
 4. docs/project-roadmap.md      → Understand WHERE the project stands
@@ -98,7 +98,9 @@ When an AI agent starts a session on this project, it MUST read documents in thi
 
 **Rule**: Never write code until you have read at minimum `project-context.md` and `project-roadmap.md`. Read `project-discussion.md` when you need deeper context on WHY decisions were made.
 
-> ⚠️ **Every new context**: AI agents MUST re-read `docs/mastery.md` at the start of every new context window or session — not just the first one. The framework rules, autonomy boundaries, and verification requirements must be fresh in context before any work begins.
+> ⚠️ **Every new context**: AI agents MUST re-read `docs/mastery-compact.md` at the start of every new context window or session — not just the first one. The framework rules, autonomy boundaries, and verification requirements must be fresh in context before any work begins.
+
+> 💡 **Token optimization**: `mastery-compact.md` contains all framework rules without templates (~5k tokens vs ~25k for the full file). Load specific templates from the full `mastery.md` only when creating new documents — search for the template heading (e.g., "### 4. Discussion Document").
 
 ### Determining Current State
 
@@ -213,7 +215,8 @@ Create the basic documentation structure:
 
 ```
 docs/
-├── mastery.md                  # Copy this framework file
+├── mastery.md                  # Copy the full framework file
+├── mastery-compact.md          # Copy the compact variant (for AI agent loading)
 ├── project-discussion.md       # Create first — discuss the project
 ├── features/                   # Empty — features go here
 └── references/                 # Empty — ADRs, specs, guides go here
@@ -303,7 +306,8 @@ Same as a new project — create the Mastery folder structure:
 
 ```
 docs/
-├── mastery.md                  # Copy this framework file
+├── mastery.md                  # Copy the full framework file
+├── mastery-compact.md          # Copy the compact variant (for AI agent loading)
 ├── project-discussion.md       # Will be reconstructed (Step 3)
 ├── _archive/                   # From Step 1
 ├── features/                   # Empty — features go here
@@ -387,7 +391,8 @@ AGENTS.md                           # 🤖 AI agent orientation (at project root
 SKILL.md                            # ⚡ AI agent skill (at project root — optional, when project has domain expertise)
 llms.txt                            # ⚡ Machine-readable project summary (at project root — optional, for discoverability)
 docs/
-├── mastery.md                  # 🏛️ THIS — The universal process framework
+├── mastery.md                  # 🏛️ Full process framework (with all templates)
+├── mastery-compact.md          # 📦 Compact framework (rules only — no templates, for AI loading)
 ├── project-discussion.md       # 💬 Project-level discussion — WHY and WHAT (created first)
 ├── project-context.md          # 🎯 Project identity, stack, architecture, scope (from discussion)
 ├── project-roadmap.md          # 🗺️ Feature list, priorities, dependencies, progress (from discussion)
@@ -421,7 +426,8 @@ docs/
 | **AGENTS.md** | Project | AI agent orientation — quick-start guide for any AI tool | After project-context.md is created (project init) |
 | **SKILL.md** | Project | AI agent skill — domain knowledge packaging for AI tools | When project has domain expertise worth packaging |
 | **llms.txt** | Project | Machine-readable summary — LLM-parseable project overview | When project is publicly discoverable |
-| **mastery.md** | Universal | Process framework — HOW you work | Once (project init) |
+| **mastery.md** | Universal | Full process framework with templates — HOW you work | Once (project init) |
+| **mastery-compact.md** | Universal | Compact framework for AI agent loading — rules only, no templates | Once (project init) |
 | **project-discussion.md** | Project | Project-level conversation — WHY and WHAT | First (project init), before anything else |
 | **project-context.md** | Project | Project identity — WHAT you're building | After project discussion is COMPLETE |
 | **project-roadmap.md** | Project | Feature plan — WHEN you build it | After project discussion is COMPLETE, updated continuously |
@@ -443,6 +449,7 @@ docs/
 | **AGENTS.md** | ✅ Always | Never skip — ensures any AI tool can orient itself in the project |
 | **SKILL.md** | ⚡ Conditional | Project has no domain expertise worth packaging as an agent skill |
 | **llms.txt** | ⚡ Conditional | Project is not publicly discoverable or doesn't need machine-readable summary |
+| **mastery-compact.md** | ✅ Always | Never skip — this is what AI agents load each session instead of the full file |
 | **project-discussion** | ✅ Always | Never skip — this is the project's foundation conversation |
 | **project-context** | ✅ Always | Never skip — this is the project's identity |
 | **project-roadmap** | ✅ Always | Never skip — this is the project's plan |
@@ -1816,11 +1823,13 @@ Every Mastery project should have an `AGENTS.md` at the **project root**. This i
 
 Read docs in this exact order (matches the AI Agent Protocol in `docs/mastery.md`):
 
-1. `docs/mastery.md` — Understand the process and AI Agent Protocol
+1. `docs/mastery-compact.md` — Framework rules (compact — all rules, no templates)
 2. `docs/project-discussion.md` — Understand WHY the project exists and key decisions
 3. `docs/project-context.md` — Understand WHAT the project is (formalized)
 4. `docs/project-roadmap.md` — Understand WHERE the project stands
 5. `docs/features/` (active) — Understand the current feature state
+
+> Need a document template? Load it from the full `docs/mastery.md` — search for the specific template heading.
 
 To find current work:
 1. Check `docs/project-roadmap.md` for features marked 🟡 IN PROGRESS
@@ -2241,7 +2250,7 @@ Whether you're a human returning after a break or an AI agent starting a new ses
 
 ### For AI Agents
 
-1. Read `docs/mastery.md` — reload the process framework (mandatory every session)
+1. Read `docs/mastery-compact.md` — reload framework rules (mandatory every session)
 2. Read `docs/project-context.md` — refresh on what this project is
 3. Read `docs/project-roadmap.md` — find the feature marked 🟡 IN PROGRESS
 4. Open that feature's `changelog.md` — read the latest Session Note
@@ -2306,14 +2315,15 @@ A feature is considered DONE when ALL of the following are true:
 ### Project Initialization (One Time)
 
 ```
-1.  Create  docs/mastery.md                              (copy this framework)
-2.  Create  docs/project-discussion.md                   (discuss the project)
-3.  Discuss until fully understood → mark COMPLETE
-4.  Create  docs/project-context.md                      (formalize from discussion)
-5.  Create  docs/project-roadmap.md                      (plan the features)
-6.  Create  docs/features/                               (empty directory)
-7.  Create  docs/references/                             (empty directory)
-8.  Start Feature 01                                     (begin the lifecycle)
+1.  Create  docs/mastery.md                              (copy full framework)
+2.  Create  docs/mastery-compact.md                      (copy compact variant)
+3.  Create  docs/project-discussion.md                   (discuss the project)
+4.  Discuss until fully understood → mark COMPLETE
+5.  Create  docs/project-context.md                      (formalize from discussion)
+6.  Create  docs/project-roadmap.md                      (plan the features)
+7.  Create  docs/features/                               (empty directory)
+8.  Create  docs/references/                             (empty directory)
+9.  Start Feature 01                                     (begin the lifecycle)
 ```
 
 ### Mid-Project Adoption (Existing Codebase)
@@ -2357,7 +2367,8 @@ A feature is considered DONE when ALL of the following are true:
 
 | Need to... | Open this doc |
 |---|---|
-| Understand the process | `docs/mastery.md` (this file) |
+| Understand the process (full + templates) | `docs/mastery.md` (this file) |
+| Understand framework rules (compact) | `docs/mastery-compact.md` |
 | See the project discussion | `docs/project-discussion.md` |
 | See what we're building | `docs/project-context.md` |
 | See what's next | `docs/project-roadmap.md` |
@@ -2375,7 +2386,7 @@ A feature is considered DONE when ALL of the following are true:
 ### AI Agent Quick Start
 
 ```
-1. Read mastery.md (this file — mandatory every session)
+1. Read mastery-compact.md (mandatory every session — compact rules, no templates)
 2. Read project-discussion.md (if you need WHY context)
 3. Read project-context.md
 4. Read project-roadmap.md

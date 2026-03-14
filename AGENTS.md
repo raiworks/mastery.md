@@ -8,7 +8,8 @@ This repository contains **MASTERY.md** — a universal, tech-agnostic developme
 
 ```
 MASTERY.md/
-├── mastery.md          # THE PRODUCT — the framework file (editable here, read-only in consuming projects)
+├── mastery.md          # THE PRODUCT — the full framework file (editable here, read-only in consuming projects)
+├── mastery-compact.md  # COMPACT VARIANT — AI-optimized (rules only, no templates)
 ├── AGENTS.md           # This file — AI agent orientation
 ├── README.md           # Human-oriented landing page
 ├── LICENSE             # MIT
@@ -31,13 +32,14 @@ MASTERY.md/
 
 Read docs in this exact order (matches the AI Agent Protocol in `mastery.md`):
 
-1. `mastery.md` — Understand the process and AI Agent Protocol (Section 1)
+1. `mastery-compact.md` — Framework rules (compact — all rules, no templates; ~5k tokens vs ~25k)
 2. `docs/project-discussion.md` — Understand WHY the project exists and key decisions
 3. `docs/project-context.md` — Understand WHAT the project is (formalized)
 4. `docs/project-roadmap.md` — Understand WHERE the project stands
 5. `docs/features/` (active) — Understand the current feature state
 
-> **Note**: In this repo, the framework lives at root (`mastery.md`) rather than `docs/mastery.md` because it IS the product. The loading order is otherwise identical to the standard Mastery protocol.
+> **Note**: In this repo, the framework lives at root (`mastery.md` / `mastery-compact.md`) rather than `docs/` because it IS the product. Load the compact variant for rules; load the full file only when you need a specific template.
+> **Need a template?** Load it from `mastery.md` — search for the heading (e.g., "### 4. Discussion Document").
 
 To find current work:
 1. Check `docs/project-roadmap.md` for features marked 🟡 IN PROGRESS
@@ -71,10 +73,10 @@ See the full Autonomy Boundaries table in `mastery.md` → AI Agent Protocol sec
 ## Important Notes
 
 - This project uses its own framework to develop itself (Mastery develops Mastery)
-- The framework is **v3.0.0** — actively being improved toward the v3.0.0 Industry Standard Release milestone
+- The framework is **v3.1.0** — actively being improved
 - The `docs/` folder follows the full Mastery lifecycle process internally
 - Process customizations go in `docs/references/process-overrides.md`, not in `mastery.md`
-- When resuming work, always read the AI Agent Protocol in `mastery.md` Section 1 first
+- When resuming work, always read `mastery-compact.md` first (AI Agent Protocol)
 
 ## Full Protocol
 
