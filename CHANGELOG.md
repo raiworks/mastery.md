@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.2.0] — 2026-03-14
+
+### Added
+
+- **`mastery-compact.md` — compact variant** (~5k tokens vs ~25k) — AI-optimized version containing all rules, no templates. 80% token reduction for agents that don't need templates every session.
+  - 12 always-needed sections preserved in full (Philosophy, AI Agent Protocol, Feature Lifecycle, etc.)
+  - All 16 templates omitted (load from full file on demand)
+  - 6 rarely-needed reference sections omitted (Parallel Features, References Directory, etc.)
+- **Two-variant loading strategy** in Context Loading Order — agents load compact by default, full file only when templates are needed
+- **Document Ecosystem updates** — both files listed in directory tree, Document Roles table, Required vs Optional table
+- **AGENTS.md updates** — project structure and loading order reference compact variant
+- **README.md updates** — two-variants table, updated Quick Start and Adopting instructions
+
+### Changed
+
+- Resuming Work section now references compact variant
+- AI Agent Quick Start updated for compact-first loading
+- Project Init and Mid-Project Adoption skeletons include `mastery-compact.md`
+- Quick Reference section updated with compact variant mention
+
+---
+
 ## [3.1.0] — 2026-03-13
 
 ### Added

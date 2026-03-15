@@ -8,6 +8,15 @@
 
 **MASTERY.md** is a single Markdown file (`mastery.md`) that codifies the entire development lifecycle for any software project. Copy it into your project's `docs/` folder and follow its process — whether you're a solo developer, a small team, or an AI coding agent.
 
+It comes in **two variants**:
+
+| Variant | File | Tokens | Best For |
+|---|---|---|---|
+| **Full** | `mastery.md` | ~25k | Complete reference with all 16 document templates, hotfix workflows, and advanced guidance |
+| **Compact** | `mastery-compact.md` | ~5k | AI agent context loading — all rules and lifecycle stages, no templates |
+
+Both files are the same framework. The compact variant drops templates and rarely-needed reference sections to save ~80% of tokens. AI agents load the compact file every session and pull specific templates from the full file only when creating new documents.
+
 It provides:
 
 - **7-stage lifecycle**: Discuss → Design → Plan → Approve → Build → Ship → Reflect
@@ -26,15 +35,16 @@ Mastery solves this by giving every project the same structured process — docu
 
 ## Quick Start
 
-1. **Copy** `mastery.md` into your project's `docs/` directory
-2. **Read** Section 1 (AI Agent Protocol) to understand the rules
+1. **Copy** `mastery.md` and `mastery-compact.md` into your project's `docs/` directory
+2. **Read** the compact file to understand rules and lifecycle (or full file for templates)
 3. **Create** `docs/project-discussion.md` using the embedded template
 4. **Follow** the lifecycle: Discuss → Design → Plan → Approve → Build → Ship → Reflect
 
 ```
 your-project/
 ├── docs/
-│   ├── mastery.md              # The framework (read-only — never edit this)
+│   ├── mastery.md              # Full framework (read-only — never edit this)
+│   ├── mastery-compact.md      # Compact variant for AI agents (read-only)
 │   ├── project-discussion.md   # First: discuss what you're building
 │   ├── project-context.md      # Then: formalize the project identity
 │   ├── project-roadmap.md      # Then: plan the feature order
@@ -55,10 +65,10 @@ your-project/
 
 | Step | Action |
 |---|---|
-| 1 | Copy `mastery.md` to `docs/mastery.md` in your project |
+| 1 | Copy `mastery.md` and `mastery-compact.md` to `docs/` in your project |
 | 2 | Create `.gitignore` rules if you want docs private |
 | 3 | Follow the Project Initialization flow in the framework |
-| 4 | When Mastery updates, replace your copy with the new version |
+| 4 | When Mastery updates, replace both copies with the new versions |
 
 ## Versioning
 
@@ -79,7 +89,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 An optional companion tool that gives AI agents native access to Mastery docs through the [Model Context Protocol](https://modelcontextprotocol.io/).
 
 **14 tools** for reading project context, roadmaps, features, tasks, test plans, reviews, and more.
-**10 resources** for direct document access via `mastery://` URIs.
+**11 resources** for direct document access via `mastery://` URIs — including `mastery://mastery-compact` for the compact variant.
 
 The server watches your `docs/` folder and serves structured, parsed content — so AI agents can query your project state without reading raw files.
 
