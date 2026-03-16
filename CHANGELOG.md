@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.3.0] — 2026-03-16
+
+### Added
+
+- **Optional TC naming convention** in testplan template (Template #7) — Go (`TestTC01_*`), Python (`test_tc01_*`), JS (`it("TC-01: ...")`) patterns for automated traceability between test cases and test code
+- **Test Function field** — optional column in TC table to link each test case to its implementation
+- **Agent-asks-about-testing** guidance in Build stage — agents ask developers about test runner, naming conventions, and coverage expectations before writing tests
+- **Testing awareness** in AI Communication Style — agents ask about test auditing when testplan.md exists (both full and compact variants)
+
+### Philosophy
+
+- Testing conventions are optional and developer-driven. Mastery provides the patterns; developers decide when to use them. Research concluded a standalone test engine is unnecessary (see `docs/research/test-engine.md`).
+
+---
+
 ## [3.2.0] — 2026-03-14
 
 ### Added

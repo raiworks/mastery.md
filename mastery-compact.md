@@ -165,6 +165,7 @@ When an AI agent is working within this framework:
 - **Reference docs** — when making decisions, cite which doc informed the choice.
 - **Explain deviations** — if you deviate from the architecture or tasks, log WHY in the changelog before proceeding.
 - **Never silently skip** — if a step seems unnecessary, say so and get confirmation. Don't just skip it.
+- **Ask about testing** — if a `testplan.md` exists for the active feature, ask the developer if they want test auditing (TC coverage check) during the build stage. Don't assume.
 
 ---
 

@@ -202,6 +202,7 @@ When an AI agent is working within this framework:
 - **Reference docs** — when making decisions, cite which doc informed the choice.
 - **Explain deviations** — if you deviate from the architecture or tasks, log WHY in the changelog before proceeding.
 - **Never silently skip** — if a step seems unnecessary, say so and get confirmation. Don't just skip it.
+- **Ask about testing** — if a `testplan.md` exists for the active feature, ask the developer if they want test auditing (TC coverage check) during the build stage. Don't assume.
 
 ---
 
@@ -573,6 +574,7 @@ Phases in the tasks doc should be organized logically for your project type. The
 | Add session notes | If working across multiple sessions (see AI Agent Protocol) |
 | Commit frequently | Clear messages following convention |
 | Run tests at checkpoints | Verify before moving to next phase |
+| Ask about testing approach | Before writing tests, ask the developer: test runner, naming conventions, coverage expectations. If a testplan.md exists, follow it. |
 | Push to feature branch | Keep remote in sync |
 
 ### Stage 5 — Ship 🚀
@@ -1489,6 +1491,27 @@ Always keep a Testing phase and a Documentation/Cleanup phase at the end.
 | **Notes** | — |
 
 <!-- Add more test cases as needed -->
+
+---
+
+## TC Naming Convention (optional)
+
+<!-- Adopt a naming convention ONLY if you want automated traceability between test cases and test code. This is optional — skip if testing is informal or not applicable. -->
+
+When test cases should be traceable to test code, use a consistent naming pattern:
+
+| Language | Pattern | Example |
+|---|---|---|
+| Go | `TestTC01_DescribesWhat` | `TestTC01_ReturnsErrorOnInvalidInput` |
+| Python | `test_tc01_describes_what` | `test_tc01_returns_error_on_invalid_input` |
+| JavaScript | `it("TC-01: describes what")` | `it("TC-01: returns error on invalid input")` |
+| Other | `TC-XX` prefix in test name | Adapt to your language's conventions |
+
+To link each test case to its implementation, add a **Test Function** column to the TC table:
+
+| Property | Value |
+|---|---|
+| **Test Function** | `TestTC01_ReturnsErrorOnInvalidInput` |
 
 ---
 
