@@ -1,6 +1,6 @@
 # MASTERY.md
 
-**Current**: v3.1.0 · [Changelog](CHANGELOG.md) · [Website](https://masterymd.com)
+**Current**: v3.3.0 · [Changelog](CHANGELOG.md) · [Website](https://masterymd.com)
 
 > A universal, tech-agnostic development process framework — one Markdown file that defines how software projects should be structured, discussed, designed, planned, built, shipped, and reflected upon.
 
