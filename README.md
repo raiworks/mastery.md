@@ -33,6 +33,21 @@ Mastery solves this by giving every project the same structured process — docu
 
 **Zero dependencies.** Pure Markdown. No tooling, no runtime, no packages — works with any language, any stack, any editor.
 
+## With Mastery vs Without
+
+| Aspect | Without Mastery | With Mastery |
+|---|---|---|
+| **Project start** | Jump straight into code; goals live in someone's head | Structured discussion doc captures the why, what, and constraints before a line is written |
+| **Context between sessions** | AI agents (and humans) lose track — repeat questions, duplicate work | Docs act as persistent memory; anyone picks up exactly where work stopped |
+| **Feature planning** | Ad-hoc tickets or mental checklists | Each feature gets a lifecycle folder: discussion → architecture → tasks → test plan → changelog |
+| **AI agent behavior** | Agents guess at conventions, hallucinate structure, skip steps | Agent Protocol defines what to read, what to decide, and when to ask for help |
+| **Git workflow** | Inconsistent branch names, vague commits | Defined branching strategy and commit format baked into the process |
+| **Design decisions** | Lost in chat threads or never recorded | Architecture docs with explicit rationale — searchable, reviewable, permanent |
+| **Onboarding** | "Read the code" or a stale wiki | New contributors read the docs folder and understand the full project state in minutes |
+| **Session handoff** | "Where were we?" every time | Changelog session notes and task checkboxes show exactly what happened and what's next |
+| **Process consistency** | Every project reinvents its workflow | One file, same lifecycle, any tech stack |
+| **Tooling required** | CI configs, project management apps, custom templates | Pure Markdown — zero dependencies, works everywhere |
+
 ## Quick Start
 
 1. **Copy** `mastery.md` and `mastery-compact.md` into your project's `docs/` directory
