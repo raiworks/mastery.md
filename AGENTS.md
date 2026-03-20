@@ -73,7 +73,7 @@ See the full Autonomy Boundaries table in `mastery.md` → AI Agent Protocol sec
 ## Important Notes
 
 - This project uses its own framework to develop itself (Mastery develops Mastery)
-- The framework is **v3.1.0** — actively being improved
+- The framework is **v3.3.0** — actively being improved
 - The `docs/` folder follows the full Mastery lifecycle process internally
 - Process customizations go in `docs/references/process-overrides.md`, not in `mastery.md`
 - When resuming work, always read `mastery-compact.md` first (AI Agent Protocol)

@@ -2426,5 +2426,5 @@ A feature is considered DONE when ALL of the following are true:
 
 ---
 
-*Mastery Framework v3.1*
+*Mastery Framework v3.3*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*

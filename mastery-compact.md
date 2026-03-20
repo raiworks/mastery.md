@@ -502,5 +502,5 @@ Scope = feature name or module (e.g., `auth`, `api`, `docs`).
 
 ---
 
-*Mastery Framework v3.1 (Compact)*
+*Mastery Framework v3.3 (Compact)*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*
