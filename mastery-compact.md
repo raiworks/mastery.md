@@ -206,7 +206,7 @@ docs/
 ├── features/                   # 📁 Per-feature folders
 │   └── XX-feature-name/
 │       ├── discussion.md / architecture.md / tasks.md
-│       ├── testplan.md / api.md (if needed) / changelog.md
+│       ├── testplan.md / api.md (if needed) / research.md (if needed) / changelog.md
 │       ├── review.md / lightweight.md (if lightweight)
 │       └── summary.md (retroactive only)
 └── references/                 # 📁 ADRs, specs, guides
@@ -230,13 +230,14 @@ docs/
 | **tasks.md** | Implementation checklist | After architecture |
 | **testplan.md** | Test cases & acceptance criteria | Alongside tasks |
 | **api.md** | Interface contracts (conditional) | When feature has external interfaces |
+| **research.md** | Structured research findings (conditional) | When significant knowledge gaps exist |
 | **changelog.md** | Build-phase running log | During build |
 | **review.md** | Post-implementation retrospective | After merge |
 | **lightweight.md** | Single combined doc (conditional) | When ALL lightweight criteria met |
 
 ### Which Docs Are Required?
 
-All docs are **required** except: `SKILL.md` (conditional), `llms.txt` (conditional), `api.md` (only for features with external interfaces), `summary.md` (only for retroactive mid-project adoption), `lightweight.md` (only when ALL lightweight eligibility criteria are met).
+All docs are **required** except: `SKILL.md` (conditional), `llms.txt` (conditional), `api.md` (only for features with external interfaces), `research.md` (only when significant knowledge gaps exist), `summary.md` (only for retroactive mid-project adoption), `lightweight.md` (only when ALL lightweight eligibility criteria are met).
 
 ---
 
@@ -257,7 +258,7 @@ Every feature flows through **6 stages** with clear entry/exit conditions.
 
 > **Entry**: Feature in roadmap → **Exit**: Discussion doc marked COMPLETE
 
-Create `discussion.md`. Define requirements, current state, approach, edge cases, dependencies. Update iteratively until confident. Mark COMPLETE.
+Create `discussion.md`. Define requirements, current state, approach, edge cases, dependencies. If knowledge gaps exist, research before proceeding — document findings in the discussion doc or a separate `research.md`. Update iteratively until confident. Mark COMPLETE.
 
 ### Stage 2 — Design 🏗️
 
@@ -502,5 +503,5 @@ Scope = feature name or module (e.g., `auth`, `api`, `docs`).
 
 ---
 
-*Mastery Framework v3.3 (Compact)*
+*Mastery Framework v3.4 (Compact)*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*

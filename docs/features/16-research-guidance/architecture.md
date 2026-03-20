@@ -15,8 +15,8 @@ This feature adds structured research guidance to the Mastery framework via two 
 
 ```
 (root)/
-├── mastery.md              # MODIFY — 9 changes (details below)
-└── mastery-compact.md      # MODIFY — 4 changes (details below)
+├── mastery.md              # MODIFY — 11 changes (details below)
+└── mastery-compact.md      # MODIFY — 5 changes (details below)
 ```
 
 No new files are created in the framework itself — the templates live inside `mastery.md`.
@@ -65,6 +65,14 @@ N/A — this feature does not introduce data models.
 - Location: Quick Reference → "Starting a New Feature" numbered list
 - Add step for `research.md` (conditional) alongside `api.md`
 
+**10. Naming Rules table — doc filenames**
+- Location: Document Naming Convention → Naming Rules table → Doc filenames example
+- Add `research.md` to the filenames list
+
+**11. Version bump — footer**
+- Location: Footer at end of mastery.md
+- Bump `v3.3` → `v3.4`
+
 ### Changes to `mastery-compact.md`
 
 **1. Document Ecosystem — folder structure**
@@ -78,6 +86,9 @@ N/A — this feature does not introduce data models.
 
 **4. Stage 1 (Discuss) description**
 - Add research guidance to the Discuss stage description
+
+**5. Version bump — footer**
+- Bump `v3.3 (Compact)` → `v3.4 (Compact)`
 
 ## Data Flow
 

@@ -43,6 +43,7 @@
   - [llms.txt](#14-llmstxt-machine-readable-summary)
   - [Summary Doc](#15-summary-document-retroactive-feature)
   - [Project Changelog Doc](#16-project-changelog-document)
+  - [Research Doc](#17-research-document)
 - [Git Branching Strategy](#-git-branching-strategy)
 - [Commit Message Convention](#-commit-message-convention)
 - [Parallel Features](#-parallel-features)
@@ -409,6 +410,7 @@ docs/
 │   │   ├── tasks.md
 │   │   ├── testplan.md
 │   │   ├── api.md                 # (only for features with API/interface contracts)
+│   │   ├── research.md            # (only when deep research is needed)
 │   │   ├── changelog.md
 │   │   └── review.md
 │   └── ...
@@ -438,6 +440,7 @@ docs/
 | **tasks.md** | Feature | Phased implementation checklist | After architecture is designed |
 | **testplan.md** | Feature | Test cases & acceptance criteria | Alongside or after tasks |
 | **api.md** | Feature | Interface contracts (APIs, CLIs, protocols, events) | When feature has external interfaces |
+| **research.md** | Feature | Structured research findings for unfamiliar domains | When knowledge gaps are significant |
 | **changelog.md** | Feature | Running log of changes during implementation | During build phase |
 | **review.md** | Feature | Post-implementation retrospective | After merge to main |
 | **summary.md** | Feature | Retroactive feature summary (mid-project adoption) | During mid-project adoption for already-completed work |
@@ -460,6 +463,7 @@ docs/
 | **tasks** | ✅ Always | Never skip — this is your execution plan |
 | **testplan** | ✅ Always | Never skip — define "done" before you start |
 | **api** | ⚡ Conditional | Feature has no external interfaces (HTTP, CLI, events, protocols) |
+| **research** | ⚡ Conditional | Feature domain is well-understood, no significant knowledge gaps |
 | **changelog** | ✅ Always | Never skip — tracks what actually happened vs what was planned |
 | **review** | ✅ Always | Never skip — learning compounds over time |
 | **summary** | ⚡ Conditional | Only for retroactive features during mid-project adoption |
@@ -509,6 +513,7 @@ Every feature flows through **6 stages**. Each stage has a clear entry condition
 | Create `XX-feature-name/discussion.md` | Use the discussion template |
 | Define WHAT the feature does | Functional requirements, user stories |
 | Understand current state | Reference existing code, legacy system, or prior art |
+| Research if needed | If knowledge gaps exist, conduct web search / landscape analysis before proceeding. Document findings in the discussion doc or a separate `research.md` |
 | Identify the approach | High-level "how" — not detailed yet |
 | Surface edge cases | What can go wrong? What's tricky? |
 | List dependencies | What must exist before this feature? |
@@ -719,7 +724,7 @@ docs/features/
 | Element | Format | Example |
 |---|---|---|
 | **Folder name** | `XX-feature-name` (2-digit zero-padded + lowercase hyphen-separated) | `01-project-setup`, `02-auth-system` |
-| **Doc filenames** | Simple type name inside the folder | `discussion.md`, `architecture.md`, `tasks.md`, `testplan.md`, `api.md`, `changelog.md`, `review.md` |
+| **Doc filenames** | Simple type name inside the folder | `discussion.md`, `architecture.md`, `tasks.md`, `testplan.md`, `api.md`, `research.md`, `changelog.md`, `review.md` |
 | **Branch name** | `feature/XX-feature-name` (matches folder name) | `feature/02-auth-system` |
 
 ### Why Folders Instead of Flat Files?
@@ -880,6 +885,35 @@ project-root/
 | **File naming** | [e.g., kebab-case, PascalCase] | [Where applied] |
 | **Git workflow** | Mastery branching strategy | See mastery.md |
 | **Commit messages** | Mastery convention | See mastery.md |
+
+## Research & Prior Art
+
+<!-- If the team lacks domain knowledge, conduct research before finalizing the discussion. -->
+<!-- For small findings, fill the sections below. For deep research across multiple topics, create a separate research.md (see Template #17). -->
+<!-- If the domain is well-understood, write "N/A — domain is well-understood" and move on. -->
+
+### Knowledge Gaps
+<!-- What do we not know well enough to make confident decisions? -->
+
+- [ ] [Topic we need to research]
+- [ ] [Topic we need to research]
+
+### Sources Consulted
+<!-- Links, docs, articles, tools, competitor products reviewed -->
+
+| Source | Type | Key Takeaway |
+|---|---|---|
+| [Link or title] | Article / Docs / Tool / Competitor | [What we learned] |
+
+### Key Findings
+<!-- Most important insights that influenced decisions above -->
+
+- [Finding and how it affects this project]
+
+### Impact on Decisions
+<!-- How did research change or confirm our approach? -->
+
+- [Decision] was [confirmed / changed] because [research finding]
 
 ## Open Questions
 
@@ -1208,6 +1242,35 @@ project-root/
 | Feature #XX — [Name] | Feature | ✅ Done / 🔴 Not started |
 | [Package/Library] | External | ✅ Available / 🔴 Needs install |
 | [Service/API] | Infrastructure | ✅ Ready / 🔴 Needs setup |
+
+## Research & Prior Art
+
+<!-- If the team lacks domain knowledge for this feature, conduct research before finalizing. -->
+<!-- For small findings, fill the sections below. For deep research across multiple topics, create a separate research.md (see Template #17). -->
+<!-- If the domain is well-understood, write "N/A — domain is well-understood" and move on. -->
+
+### Knowledge Gaps
+<!-- What do we not know well enough to design this feature confidently? -->
+
+- [ ] [Topic we need to research]
+- [ ] [Topic we need to research]
+
+### Sources Consulted
+<!-- Links, docs, articles, tools, competitor products reviewed -->
+
+| Source | Type | Key Takeaway |
+|---|---|---|
+| [Link or title] | Article / Docs / Tool / Competitor | [What we learned] |
+
+### Key Findings
+<!-- Most important insights that influenced the approach -->
+
+- [Finding and how it affects this feature]
+
+### Impact on Decisions
+<!-- How did research change or confirm the proposed approach? -->
+
+- [Decision] was [confirmed / changed] because [research finding]
 
 ## Open Questions
 
@@ -2052,6 +2115,103 @@ The summary document captures completed work retroactively during mid-project ad
 
 ---
 
+### 17. Research Document
+
+**Filename**: `research.md`
+**Location**: `docs/features/XX-feature-name/research.md`
+**Purpose**: Structured research findings when a feature requires significant investigation into unfamiliar domains, technologies, or approaches. Separates deep research from the discussion doc to keep discussions focused.
+**Created**: During the Discussion stage, only when research is extensive enough to warrant its own document. For lightweight findings, use the "Research & Prior Art" section in `discussion.md` instead.
+
+````markdown
+# 🔍 Research: [Feature Name]
+
+> **Feature**: `XX` — [Feature Name]
+> **Discussion**: [`discussion.md`](discussion.md)
+> **Status**: 🟡 IN PROGRESS | 🟢 COMPLETE
+> **Date Started**: YYYY-MM-DD
+> **Date Completed**: —
+
+---
+
+## Overview
+
+<!-- Why is this research needed? What knowledge gaps prevent confident design decisions? -->
+
+## Knowledge Gaps
+
+<!-- List the specific unknowns that triggered this research -->
+
+- [ ] [Gap 1 — what we don't know]
+- [ ] [Gap 2 — what we don't know]
+- [ ] [Gap 3 — what we don't know]
+
+---
+
+## Research Topics
+
+<!-- One section per topic researched. Repeat this block as needed. -->
+
+### Topic: [Topic Name]
+
+**Question**: [What specific question are we trying to answer?]
+
+#### Sources Consulted
+
+| Source | Type | URL / Reference |
+|---|---|---|
+| [Name] | Article / Docs / Tool / Repo / Competitor | [Link or reference] |
+| [Name] | Article / Docs / Tool / Repo / Competitor | [Link or reference] |
+
+#### Findings
+
+<!-- Key facts, patterns, trade-offs discovered -->
+
+- [Finding 1]
+- [Finding 2]
+- [Finding 3]
+
+#### Conclusion
+
+<!-- What did we learn? How does this answer the question? -->
+
+---
+
+<!-- Repeat "### Topic:" sections for each research area -->
+
+## Summary & Recommendations
+
+### Key Takeaways
+
+<!-- The most important findings across all topics -->
+
+1. [Takeaway 1]
+2. [Takeaway 2]
+3. [Takeaway 3]
+
+### Impact on Feature Design
+
+<!-- How should these findings shape the architecture and implementation? -->
+
+| Finding | Impact on Design |
+|---|---|
+| [Finding] | [How it changes or confirms the approach] |
+
+### Unresolved Questions
+
+<!-- Anything research couldn't answer — may need prototyping or expert consultation -->
+
+- [Question that remains open]
+
+---
+
+**Research Complete**: YYYY-MM-DD
+**Next**: Finalize discussion doc → create architecture doc
+````
+
+> **When to use this vs the discussion section**: If your research fits in a few bullets within `discussion.md`'s "Research & Prior Art" section, keep it there. Create a separate `research.md` when you have multiple topics, extensive source lists, or findings that would overwhelm the discussion doc.
+
+---
+
 ## 🌿 Git Branching Strategy
 
 ```
@@ -2375,16 +2535,17 @@ A feature is considered DONE when ALL of the following are true:
 7.  Create  docs/features/XX-feature-name/tasks.md        (plan)
 8.  Create  docs/features/XX-feature-name/testplan.md     (define done)
 9.  Create  docs/features/XX-feature-name/api.md          (if has external interfaces)
-10. Create  docs/features/XX-feature-name/changelog.md    (empty, ready)
-11. Create  git branch: feature/XX-feature-name           (build)
-12. Execute tasks, log in changelog                       (build)
-13. Run test plan                                         (verify)
-14. Human approval → merge to main, keep branch           (ship)
-15. Create  docs/features/XX-feature-name/review.md       (reflect)
-16. Update  project-roadmap.md progress tracker           (track)
+10. Create  docs/features/XX-feature-name/research.md      (if deep research needed)
+11. Create  docs/features/XX-feature-name/changelog.md    (empty, ready)
+12. Create  git branch: feature/XX-feature-name           (build)
+13. Execute tasks, log in changelog                       (build)
+14. Run test plan                                         (verify)
+15. Human approval → merge to main, keep branch           (ship)
+16. Create  docs/features/XX-feature-name/review.md       (reflect)
+17. Update  project-roadmap.md progress tracker           (track)
 ```
 
-> **Lightweight path**: If the feature meets ALL lightweight eligibility criteria, replace steps 3–15 with a single `lightweight.md`. See [Lightweight Feature Variant](#-lightweight-feature-variant).
+> **Lightweight path**: If the feature meets ALL lightweight eligibility criteria, replace steps 3–17 with a single `lightweight.md`. See [Lightweight Feature Variant](#-lightweight-feature-variant).
 
 ### Document Quick Reference
 
@@ -2400,6 +2561,7 @@ A feature is considered DONE when ALL of the following are true:
 | Plan implementation | `docs/features/XX-feature-name/tasks.md` |
 | Define test cases | `docs/features/XX-feature-name/testplan.md` |
 | Spec an interface | `docs/features/XX-feature-name/api.md` |
+| Document research | `docs/features/XX-feature-name/research.md` |
 | Log build progress | `docs/features/XX-feature-name/changelog.md` |
 | Reflect on delivery | `docs/features/XX-feature-name/review.md` |
 | Record a big decision | `docs/references/ADR-NNN-title.md` |
@@ -2426,5 +2588,5 @@ A feature is considered DONE when ALL of the following are true:
 
 ---
 
-*Mastery Framework v3.3*
+*Mastery Framework v3.4*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*

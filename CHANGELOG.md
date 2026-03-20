@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.4.0] — 2026-03-21
+
+### Added
+
+- **Research guidance (hybrid approach)** — structured research support for projects and features where domain knowledge is insufficient
+  - **"Research & Prior Art" section** added to both Project Discussion (Template #1) and Feature Discussion (Template #4) templates — always available, can be marked N/A when domain is well-understood
+  - **`research.md` document type** — new conditional feature document (Template #17) for deep multi-topic research, created only when findings would overwhelm the discussion doc
+  - **Stage 1 (Discuss) action** — new "Research if needed" row guiding teams to investigate knowledge gaps before proceeding
+  - **Document Ecosystem updates** — `research.md` added to folder tree, Document Roles table, Required vs Optional table (⚡ Conditional)
+  - **Quick Reference updates** — new step in "Starting a New Feature" list, new entry in Document Quick Reference table
+  - **Naming Rules update** — `research.md` added to doc filenames list
+  - **`mastery-compact.md` updates** — folder structure, Document Roles table, required docs note, and Stage 1 description all updated
+
+---
+
 ## [3.3.0] — 2026-03-16
 
 ### Added
