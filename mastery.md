@@ -594,6 +594,8 @@ Phases in the tasks doc should be organized logically for your project type. The
 | Human approval | AI agents MUST get human sign-off before merge |
 | Merge to main | PR or direct merge (human executes or approves) |
 | Update project changelog | Add entry to `project-changelog.md` for the shipped feature |
+| Update README / public docs | If the feature changes user-facing info (version, template count, capabilities), update `README.md` and any public-facing docs |
+| Create release (if versioned) | If the project uses versioned releases and this feature bumps the version, create a tagged release (e.g., GitHub Release) with release notes from the changelog |
 | Push main | Deploy pipeline triggers (if configured) |
 | Keep the feature branch | Never delete — historical reference |
 
@@ -1498,6 +1500,8 @@ Always keep a Testing phase and a Documentation/Cleanup phase at the end.
 - [ ] Human approval received
 - [ ] Merge to main
 - [ ] Push main
+- [ ] Update README / public docs (if feature changes user-facing info)
+- [ ] Create release with tag and notes (if project uses versioned releases)
 - [ ] **Keep the feature branch** — do not delete
 - [ ] Create review doc → `review.md`
 ````
@@ -2475,6 +2479,8 @@ A feature is considered DONE when ALL of the following are true:
 - [ ] Feature is merged to main
 - [ ] Review doc is completed (reflection done)
 - [ ] Project roadmap is updated (feature marked 🟢 Complete)
+- [ ] README and public-facing docs are updated (if feature changes user-facing info)
+- [ ] Release is created with tag and notes (if project uses versioned releases)
 
 ### Code Level
 
@@ -2541,11 +2547,12 @@ A feature is considered DONE when ALL of the following are true:
 13. Execute tasks, log in changelog                       (build)
 14. Run test plan                                         (verify)
 15. Human approval → merge to main, keep branch           (ship)
-16. Create  docs/features/XX-feature-name/review.md       (reflect)
-17. Update  project-roadmap.md progress tracker           (track)
+16. Update README / create release if versioned            (ship)
+17. Create  docs/features/XX-feature-name/review.md       (reflect)
+18. Update  project-roadmap.md progress tracker           (track)
 ```
 
-> **Lightweight path**: If the feature meets ALL lightweight eligibility criteria, replace steps 3–17 with a single `lightweight.md`. See [Lightweight Feature Variant](#-lightweight-feature-variant).
+> **Lightweight path**: If the feature meets ALL lightweight eligibility criteria, replace steps 3–18 with a single `lightweight.md`. See [Lightweight Feature Variant](#-lightweight-feature-variant).
 
 ### Document Quick Reference
 

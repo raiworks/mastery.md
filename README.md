@@ -1,6 +1,6 @@
 # MASTERY.md
 
-**Current**: v3.3.0 · [Changelog](CHANGELOG.md) · [Website](https://masterymd.com)
+**Current**: v3.4.0 · [Changelog](CHANGELOG.md) · [Website](https://masterymd.com)
 
 > A universal, tech-agnostic development process framework — one Markdown file that defines how software projects should be structured, discussed, designed, planned, built, shipped, and reflected upon.
 
@@ -12,7 +12,7 @@ It comes in **two variants**:
 
 | Variant | File | Tokens | Best For |
 |---|---|---|---|
-| **Full** | `mastery.md` | ~25k | Complete reference with all 16 document templates, hotfix workflows, and advanced guidance |
+| **Full** | `mastery.md` | ~25k | Complete reference with all 17 document templates, hotfix workflows, and advanced guidance |
 | **Compact** | `mastery-compact.md` | ~5k | AI agent context loading — all rules and lifecycle stages, no templates |
 
 Both files are the same framework. The compact variant drops templates and rarely-needed reference sections to save ~80% of tokens. AI agents load the compact file every session and pull specific templates from the full file only when creating new documents.

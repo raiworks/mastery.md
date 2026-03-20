@@ -292,7 +292,7 @@ Execute tasks phase by phase, check off items, log changes in changelog, add ses
 
 > **Entry**: All tasks complete, all tests pass → **Exit**: Merged to main (human-approved)
 
-Self-review diffs. Final test pass. Human approval. Merge to main. Update `project-changelog.md`. Push main. **Keep the feature branch** (never delete).
+Self-review diffs. Final test pass. Human approval. Merge to main. Update `project-changelog.md`. Update README/public docs if user-facing info changed. Create release with tag and notes if versioned. Push main. **Keep the feature branch** (never delete).
 
 ### Stage 6 — Reflect 🪞
 

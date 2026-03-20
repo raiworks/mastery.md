@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
   - **Quick Reference updates** — new step in "Starting a New Feature" list, new entry in Document Quick Reference table
   - **Naming Rules update** — `research.md` added to doc filenames list
   - **`mastery-compact.md` updates** — folder structure, Document Roles table, required docs note, and Stage 1 description all updated
+- **Ship stage release & README rules** — Stage 5 (Ship) now includes mandatory steps for updating README/public docs and creating versioned releases. Added to Ship action table, Definition of Done, Tasks template Ship checklist, Quick Reference, and mastery-compact.md.
 
 ---
 
