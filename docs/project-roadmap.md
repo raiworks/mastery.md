@@ -11,8 +11,8 @@
 | Metric | Count |
 |---|---|
 | Total Features | 16 |
-| ✅ Complete & Merged | 12 |
-| 🟡 In Progress | 3 |
+| ✅ Complete & Merged | 13 |
+| 🟡 In Progress | 2 |
 | 🔴 Not Started | 1 |
 | ⏸️ On Hold | 0 |
 
@@ -39,7 +39,7 @@
 | 13 | Context optimization | ✅ Complete | #12 | `feature/13-context-optimization` | mastery-compact.md (AI-optimized, ~5k tokens vs ~25k) + mastery.md updates |
 | 14 | Test engine (optional testing conventions) | 🟡 In Progress | #13 | `feature/14-test-engine` | Optional TC naming convention, agent-asks-about-testing, no standalone tooling |
 | 15 | gstack Mastery skill (distribution) | 🟡 In Progress | #08, #13 | `gstack-fork:mastery-status` | /mastery-status skill for garrytan/gstack — PR #112 submitted |
-| 16 | Research guidance | 🟡 In Progress | — | `feature/16-research-guidance` | Hybrid approach: research section in discussion templates + conditional research.md |
+| 16 | Research guidance | ✅ Complete | — | `feature/16-research-guidance` | Hybrid approach: research section in discussion templates + conditional research.md, v3.4.0 |
 
 ---
 
