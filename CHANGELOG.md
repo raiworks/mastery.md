@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ---
 
+## [3.5.0] — 2026-04-01
+
+### Added
+
+- **Architecture amendment flexibility** — minor amendments (renamed fields, adjusted signatures) can now be logged in the changelog and applied autonomously. Structural changes still require human approval. Autonomy Boundaries table split into two rows: "Amend architecture (minor)" and "Modify architecture (structural)".
+- **Security checkpoint at Ship stage** — new "Security review" row in Stage 5 action table. Covers auth gaps, input validation, hardcoded secrets, PII exposure, injection risks.
+- **Compact fallback instruction** — new 🔄 Fallback note in Context Loading Order. If `mastery-compact.md` doesn't exist, agents fall back to reading `mastery.md` directly instead of failing.
+- **Rollback & Recovery subsection** — new section after Hotfix Rules covering when to revert vs hotfix, rollback procedure, and post-rollback steps.
+- **Reflect-to-Discuss feedback loop** — Stage 6 now includes "Capture lessons for next feature" action. Discussion template (#4) gains "Lessons from Previous Features" section. Review template (#10) gains "Key Lessons to Carry Forward" section.
+
+### Changed
+
+- **Cross-check trigger wording** — "Every ~5 build tasks completed" changed to "Every ~5 build tasks, or after any high-complexity/high-risk task" for complexity-aware triggering.
+- **mastery-compact.md** — synced with all applicable changes (architecture flexibility, security checkpoint, compact fallback, cross-check wording, reflect loop).
+- **Version bumped** to v3.5.
+
+---
+
 ## [3.4.0] — 2026-03-21
 
 ### Added

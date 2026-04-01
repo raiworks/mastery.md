@@ -11,12 +11,12 @@
 | Metric | Count |
 |---|---|
 | Total Features | 17 |
-| ✅ Complete & Merged | 14 |
-| 🟡 In Progress | 1 |
+| ✅ Complete & Merged | 15 |
+| 🟡 In Progress | 0 |
 | 🔴 Not Started | 0 |
 | ⏸️ On Hold | 2 |
 
-**Overall Progress**: █████████░ 85%
+**Overall Progress**: █████████░ 88%
 
 ---
 
@@ -40,7 +40,7 @@
 | 14 | Test engine (optional testing conventions) | ⏸️ On Hold | #13 | `feature/14-test-engine` | Deferred - optional TC naming convention, not priority |
 | 15 | gstack Mastery skill (distribution) | ⏸️ On Hold | #08, #13 | `gstack-fork:mastery-status` | Deferred - PR #112 submitted, awaiting upstream |
 | 16 | Research guidance | ✅ Complete | — | `feature/16-research-guidance` | Hybrid approach: research section in discussion templates + conditional research.md, v3.4.0 |
-| 17 | Framework resilience improvements | 🟡 In Progress | — | `feature/17-framework-resilience` | 6 gap fixes: arch flexibility, security gate, compact fallback, cross-check wording, rollback, reflect loop |
+| 17 | Framework resilience improvements | ✅ Complete | — | `feature/17-framework-resilience` | 6 gap fixes: arch flexibility, security gate, compact fallback, cross-check wording, rollback, reflect loop |
 
 ---
 
