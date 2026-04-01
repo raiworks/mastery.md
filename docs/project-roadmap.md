@@ -1,8 +1,8 @@
 # 🗺️ Project Roadmap
 
 > **Project**: MASTERY.md — Universal AI Development Process Framework
-> **Current Milestone**: v3.4.0
-> **Last Updated**: 2026-03-21
+> **Current Milestone**: v3.5.0
+> **Last Updated**: 2026-04-01
 
 ---
 
@@ -10,13 +10,13 @@
 
 | Metric | Count |
 |---|---|
-| Total Features | 16 |
-| ✅ Complete & Merged | 13 |
-| 🟡 In Progress | 2 |
-| 🔴 Not Started | 1 |
-| ⏸️ On Hold | 0 |
+| Total Features | 17 |
+| ✅ Complete & Merged | 14 |
+| 🟡 In Progress | 1 |
+| 🔴 Not Started | 0 |
+| ⏸️ On Hold | 2 |
 
-**Overall Progress**: ████████░░ 80%
+**Overall Progress**: █████████░ 85%
 
 ---
 
@@ -33,13 +33,14 @@
 | 07 | AGENTS.md generation guidance | ✅ Complete | #02 | `main` | Template #12, Step 3.5 in init, document ecosystem entries |
 | 08 | SKILL.md + llms.txt | ✅ Complete | #03 | `main` | Templates #13 (SKILL.md) and #14 (llms.txt), document ecosystem entries |
 | 09 | Cross-tool config generation guidance | ✅ Complete | #07 | `main` | Cross-Tool Configuration section with source mapping table, derivation principles, MCP alternative note |
-| 10 | Feedback web application | 🔴 Not Started | #01 | — | Community feedback, issue reporting, improvement requests (deferred to v3.1.0) |
+| 10 | Feedback web application | ✅ Complete | #01 | `mastery-md-website` | Deployed as mastery-md-website (separate repo in workspace) |
 | 11 | Mid-project adoption guide | ✅ Complete | — | `main` | 8-step adoption workflow, _archive/ folder, summary.md template (#15), Quick Reference checklist |
 | 12 | Framework improvements (v3.1) | ✅ Complete | — | `feature/12-framework-improvements` | Strict context loading + project-changelog.md document type + Template #16 |
 | 13 | Context optimization | ✅ Complete | #12 | `feature/13-context-optimization` | mastery-compact.md (AI-optimized, ~5k tokens vs ~25k) + mastery.md updates |
-| 14 | Test engine (optional testing conventions) | 🟡 In Progress | #13 | `feature/14-test-engine` | Optional TC naming convention, agent-asks-about-testing, no standalone tooling |
-| 15 | gstack Mastery skill (distribution) | 🟡 In Progress | #08, #13 | `gstack-fork:mastery-status` | /mastery-status skill for garrytan/gstack — PR #112 submitted |
+| 14 | Test engine (optional testing conventions) | ⏸️ On Hold | #13 | `feature/14-test-engine` | Deferred - optional TC naming convention, not priority |
+| 15 | gstack Mastery skill (distribution) | ⏸️ On Hold | #08, #13 | `gstack-fork:mastery-status` | Deferred - PR #112 submitted, awaiting upstream |
 | 16 | Research guidance | ✅ Complete | — | `feature/16-research-guidance` | Hybrid approach: research section in discussion templates + conditional research.md, v3.4.0 |
+| 17 | Framework resilience improvements | 🟡 In Progress | — | `feature/17-framework-resilience` | 6 gap fixes: arch flexibility, security gate, compact fallback, cross-check wording, rollback, reflect loop |
 
 ---
 

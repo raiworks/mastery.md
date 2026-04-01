@@ -8,5 +8,8 @@ mastery-mcp-server/
 # Website - separate repo (https://github.com/RAiWorks/mastery-md-website)
 mastery-md-website/
 
+# Blueprint - separate repo
+blueprint-mastery-md/
+
 # Private data - not to be committed
 private-data/
