@@ -103,6 +103,8 @@ When an AI agent starts a session on this project, it MUST read documents in thi
 
 > 💡 **Token optimization**: `mastery-compact.md` contains all framework rules without templates (~5k tokens vs ~25k for the full file). Load specific templates from the full `mastery.md` only when creating new documents — search for the template heading (e.g., "### 4. Discussion Document").
 
+> 🔄 **Fallback**: If `docs/mastery-compact.md` does not exist in the project, fall back to reading `docs/mastery.md` directly. The compact file is preferred for token efficiency, but the full file contains all the same rules. Never skip context loading because the compact variant is missing.
+
 ### Determining Current State
 
 To figure out what's in progress:
@@ -127,7 +129,8 @@ AI agents MUST follow these rules about what they can and cannot do independentl
 | Push to feature branch | ✅ Yes | — |
 | Update project changelog | ✅ Yes | — |
 | Create a new feature's discussion doc | ✅ Yes | — |
-| Modify architecture after finalization | ❌ No | ✅ Must discuss first |
+| Amend architecture (minor, logged) | ✅ Yes | — |
+| Modify architecture (structural change) | ❌ No | ✅ Must discuss first |
 | Skip any lifecycle stage | ❌ No | ✅ Never — no exceptions |
 | Merge to main | ❌ No | ✅ Always human-approved |
 | Delete any branch | ❌ No | ✅ Always human-approved |
@@ -148,7 +151,7 @@ AI agents MUST verify their work against planning docs — not just check that t
 | Trigger | What to Verify |
 |---|---|
 | After planning docs created | Discussion ↔ architecture ↔ tasks ↔ testplan alignment |
-| Every ~5 build tasks completed | Code matches architecture, tasks checked off, changelog current |
+| Every ~5 build tasks, or after any high-complexity/high-risk task | Code matches architecture, tasks checked off, changelog current |
 | Before requesting merge | Full cross-check — all items below |
 
 #### What to Verify
@@ -535,6 +538,8 @@ Every feature flows through **6 stages**. Each stage has a clear entry condition
 | Document trade-offs | Why this approach over alternatives |
 | Define config changes | Environment variables, settings (if applicable) |
 
+> **Architecture Amendments**: After finalization, minor amendments (renamed fields, adjusted signatures, small additions) can be made by logging the change in the feature changelog with rationale. Structural changes (new components, changed data flow, different patterns) still require discussion and human approval. The architecture doc should be updated to reflect amendments - mark changed sections with `(amended YYYY-MM-DD)`.
+
 ### Stage 3 — Plan 📋
 
 > **Entry**: Architecture doc finalized
@@ -590,6 +595,7 @@ Phases in the tasks doc should be organized logically for your project type. The
 | Action | Detail |
 |---|---|
 | Self-review all changes | Read your own diff |
+| Security review | Check for auth gaps, input validation, hardcoded secrets, PII exposure, injection risks. Use project security checklist in `references/` if one exists |
 | Final test pass | Full test plan one last time |
 | Human approval | AI agents MUST get human sign-off before merge |
 | Merge to main | PR or direct merge (human executes or approves) |
@@ -610,6 +616,7 @@ Phases in the tasks doc should be organized logically for your project type. The
 | What went well? | Patterns to repeat |
 | What went wrong? | Issues encountered, time sinks |
 | What was learned? | New knowledge to carry forward |
+| Capture lessons for next feature | Mark 1-3 key lessons in review.md that the next feature's discussion should reference |
 | Update roadmap | Mark feature as complete in `project-roadmap.md` |
 
 ---
@@ -647,6 +654,29 @@ Not everything can go through the full 6-stage lifecycle. Critical bugs in produ
 - Hotfixes MUST be documented after the fact
 - If the fix is complex or touches multiple systems, it's NOT a hotfix — use the full lifecycle
 - After the hotfix is merged, consider whether a follow-up feature is needed to address the root cause
+
+### Rollback & Recovery
+
+When a deploy goes badly wrong and a hotfix isn't enough — you need to revert.
+
+**When to revert instead of hotfix**:
+- The broken change is large or touches many files
+- The root cause isn't immediately clear
+- Production is degraded and time pressure is high
+- The fix would take longer than reverting and re-deploying
+
+**Rollback procedure**:
+1. Revert the merge commit on `main`: `git revert -m 1 <merge-commit-hash>`
+2. Test the reverted state — confirm production is restored
+3. Human-approved push to `main`
+4. Document the revert in `project-changelog.md` and the relevant feature changelog
+5. Create a follow-up feature or hotfix to properly fix the issue before re-merging
+
+**After a rollback**:
+- The original feature branch is NOT deleted — it contains the work
+- Fix the issue on the feature branch, then go through Ship stage again
+- Update the feature's changelog with what went wrong and what was fixed
+- If the rollback revealed an architectural gap, update the architecture doc
 
 ---
 
@@ -1205,6 +1235,15 @@ project-root/
 ## Summary
 
 <!-- One paragraph: What does this feature do and why does it matter? -->
+
+---
+
+## Lessons from Previous Features
+
+<!-- Check the review.md of the most recently completed feature(s). Are there lessons that apply here? -->
+<!-- If no prior reviews exist or no lessons apply, write \"No applicable lessons from prior features.\" -->
+
+- [Lesson from Feature #XX review] — [How it applies to this feature]
 
 ---
 
@@ -1831,6 +1870,12 @@ For other types, replace with appropriate contract definitions:
 
 - [ ] [Follow-up item]
 - [ ] [Follow-up item]
+
+## Key Lessons to Carry Forward
+
+<!-- Mark 1-3 lessons that the NEXT feature's discussion.md should reference in its "Lessons from Previous Features" section. These create a feedback loop between Reflect and Discuss stages. -->
+
+- **[Lesson]**: [Brief description of what to apply next time]
 ````
 
 ### 11. Lightweight Feature Document
@@ -2595,5 +2640,5 @@ A feature is considered DONE when ALL of the following are true:
 
 ---
 
-*Mastery Framework v3.4*
+*Mastery Framework v3.5*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*

@@ -65,6 +65,8 @@ When an AI agent starts a session on this project, it MUST read documents in thi
 
 > 📝 **Need a document template?** Load the specific template from `docs/mastery.md` — search for the heading (e.g., "### 4. Discussion Document"). Do NOT load the full file for rules — use this compact variant.
 
+> 🔄 **Fallback**: If `docs/mastery-compact.md` does not exist in the project, fall back to reading `docs/mastery.md` directly. The compact file is preferred for token efficiency, but the full file contains all the same rules. Never skip context loading because the compact variant is missing.
+
 ### Determining Current State
 
 To figure out what's in progress:
@@ -89,7 +91,8 @@ AI agents MUST follow these rules about what they can and cannot do independentl
 | Push to feature branch | ✅ Yes | — |
 | Update project changelog | ✅ Yes | — |
 | Create a new feature's discussion doc | ✅ Yes | — |
-| Modify architecture after finalization | ❌ No | ✅ Must discuss first |
+| Amend architecture (minor, logged) | ✅ Yes | — |
+| Modify architecture (structural change) | ❌ No | ✅ Must discuss first |
 | Skip any lifecycle stage | ❌ No | ✅ Never — no exceptions |
 | Merge to main | ❌ No | ✅ Always human-approved |
 | Delete any branch | ❌ No | ✅ Always human-approved |
@@ -110,7 +113,7 @@ AI agents MUST verify their work against planning docs — not just check that t
 | Trigger | What to Verify |
 |---|---|
 | After planning docs created | Discussion ↔ architecture ↔ tasks ↔ testplan alignment |
-| Every ~5 build tasks completed | Code matches architecture, tasks checked off, changelog current |
+| Every ~5 build tasks, or after any high-complexity/high-risk task | Code matches architecture, tasks checked off, changelog current |
 | Before requesting merge | Full cross-check — all items below |
 
 #### What to Verify
@@ -266,6 +269,8 @@ Create `discussion.md`. Define requirements, current state, approach, edge cases
 
 Create `architecture.md`. Define file structure, data models, component design, data flow, trade-offs, config changes.
 
+> **Architecture Amendments**: After finalization, minor amendments (renamed fields, adjusted signatures, small additions) can be logged in the changelog and applied. Structural changes (new components, changed data flow, different patterns) still require human approval.
+
 ### Stage 3 — Plan 📋
 
 > **Entry**: Architecture FINALIZED → **Exit**: Tasks + testplan + api (if needed) created
@@ -292,13 +297,13 @@ Execute tasks phase by phase, check off items, log changes in changelog, add ses
 
 > **Entry**: All tasks complete, all tests pass → **Exit**: Merged to main (human-approved)
 
-Self-review diffs. Final test pass. Human approval. Merge to main. Update `project-changelog.md`. Update README/public docs if user-facing info changed. Create release with tag and notes if versioned. Push main. **Keep the feature branch** (never delete).
+Self-review diffs. Security review (auth gaps, input validation, hardcoded secrets, PII exposure). Final test pass. Human approval. Merge to main. Update `project-changelog.md`. Update README/public docs if user-facing info changed. Create release with tag and notes if versioned. Push main. **Keep the feature branch** (never delete).
 
 ### Stage 6 — Reflect 🪞
 
 > **Entry**: Feature merged → **Exit**: Review doc completed
 
-Create `review.md`. Document what went well, what went wrong, what was learned. Update roadmap (mark feature 🟢 Complete).
+Create `review.md`. Document what went well, what went wrong, what was learned. Mark 1-3 key lessons to carry forward into the next feature's discussion. Update roadmap (mark feature 🟢 Complete).
 
 ---
 
@@ -503,5 +508,5 @@ Scope = feature name or module (e.g., `auth`, `api`, `docs`).
 
 ---
 
-*Mastery Framework v3.4 (Compact)*
+*Mastery Framework v3.5 (Compact)*
 *Works for any project. Any language. Any stack. Any team. Human or AI.*
